@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import classnames from 'classnames';
+import omit from 'lodash/omit';
 
 function fixControlledValue(value) {
-    if (typeof value === 'undefined' || value === null) {
+    if (value == null) {
         return '';
     }
     return value;
@@ -11,7 +12,7 @@ function fixControlledValue(value) {
 
 const propTypes = {
     prefixCls: PropTypes.string,
-    size: PropTypes.oneOf(['small', 'default', 'large']),
+    size: PropTypes.oneOf(['small', 'default', 'large', '']),
     className: PropTypes.string,
     style: PropTypes.object,
     type: PropTypes.string, //text textarea
@@ -22,11 +23,11 @@ const propTypes = {
     autoFocus: PropTypes.bool,
     inputCls: PropTypes.string,
     inputStyle: PropTypes.object,
-    prefix: PropTypes.any,
-    suffix: PropTypes.any,
+    prefix: PropTypes.node,
+    suffix: PropTypes.node,
 };
 
-export default class Input extends PureComponent {
+export default class Input extends React.Component {
     static propTypes = propTypes
 
     static defaultProps = {
@@ -35,7 +36,9 @@ export default class Input extends PureComponent {
         autoComplete: 'off',
         type: 'text',
         inline: true,
-        size: 'default',
+        size: '',
+        prefix: '',
+        suffix: '',
     };
 
     focus() {
@@ -71,11 +74,11 @@ export default class Input extends PureComponent {
     }
 
     getInputClassName() {
-        const { prefixCls, size, disabled, inputCls } = this.props;
-        return classNames(prefixCls, {
-            [`${prefixCls}-sm`]: size === 'small',
-            [`${prefixCls}-lg`]: size === 'large',
-            [`${prefixCls}-disabled`]: disabled,
+        const { prefixCls, size, disabled, inputCls, prefix, suffix } = this.props;
+        return classnames(prefixCls, {
+            [`${prefixCls}-${size}`]: size,
+            [`${prefixCls}-with-prefix`]: prefix !== '',
+            [`${prefixCls}-with-suffix`]: suffix !== '',
             [inputCls]: inputCls,
         });
     }
@@ -118,7 +121,7 @@ export default class Input extends PureComponent {
 
     getTextareaClassName() {
         const { prefixCls, disabled, inputCls } = this.props;
-        return classNames({
+        return classnames({
             [`${prefixCls}`]: true,
             [`${prefixCls}-disabled`]: disabled,
             [inputCls]: inputCls,
@@ -157,34 +160,6 @@ export default class Input extends PureComponent {
         );
     }
 
-    getPrefix() {
-        let { prefix, prefixCls } = this.props;
-
-        if (typeof prefix === 'function') {
-            prefix = prefix();
-        }
-
-        if (prefix) {
-            return <span className={`${prefixCls}-prefix`}>{prefix}</span>
-        }
-
-        return null;
-    }
-
-    getSuffix() {
-        let { suffix, prefixCls } = this.props;
-
-        if (typeof suffix === 'function') {
-            suffix = suffix();
-        }
-
-        if (suffix) {
-            return <span className={`${prefixCls}-suffix`}>{suffix}</span>
-        }
-
-        return null;
-    }
-
     getWrapperClassName() {
         const { prefixCls, className, size, prepend, append, search, enterButton } = this.props;
         return classnames({
@@ -207,17 +182,12 @@ export default class Input extends PureComponent {
             className,
             style = {},
             append,
+            prepend,
             search,
-            enterButton
+            enterButton,
+            prefix,
+            suffix,
         } = this.props;
-
-        const prefix = this.getPrefix();
-        const suffix = this.getSuffix();
-
-        const classname = classNames({
-            [`${prefixCls}-wrapper`]: true,
-            [className]: className
-        });
 
         return (
             <div
@@ -230,9 +200,9 @@ export default class Input extends PureComponent {
                     ) : null
                 }
                 {
-                    showSuffix ? (
-                        <span className="ivu-input-suffix">
-                            <i className={`ivu-icon ivu-icon-${suffix}`}></i>
+                    suffix !== '' ? (
+                        <span className="rw-input-suffix">
+                            <i className={`rw-icon rw-icon-${suffix}`}></i>
                         </span >
                     ) : null
                 }
@@ -250,16 +220,16 @@ export default class Input extends PureComponent {
                         >
                             {
                                 enterButton ? (
-                                    <i class="ivu-icon ivu-icon-ios-search"></i>
+                                    <i class="rw-icon rw-icon-ios-search"></i>
                                 ) : enterButton
                             }
                         </div >
                     ) : null
                 }
                 {
-                    showPrefix ? (
-                        <span className="ivu-input-prefix">
-                            <i className={`ivu-icon ivu-icon-${prefix}`}></i>
+                    prefix !== '' ? (
+                        <span className="rw-input-prefix">
+                            <i className={`rw-icon rw-icon-${prefix}`}></i>
                         </span >
                     ) : null
                 }

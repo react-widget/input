@@ -2,7 +2,93 @@ $input-prefix-cls: rw-input;
 $input-height: 32px;
 $input-color: #515a6e;
 
-#{$prefixCls} {
+@mixin input-large() {
+    font-size: 14px;
+    padding: 6px 7px;
+    height: 36px;
+}
+
+@mixin input-small() {
+    padding: 1px 7px;
+    height: 24px;
+    border-radius: 3px;
+}
+
+@mixin placeholder() {
+    // Firefox
+    &::-moz-placeholder {
+        color: #c5c8ce;
+        opacity: 1; // Override Firefox's unusual default opacity; see https://github.com/twbs/bootstrap/pull/11526
+    }
+    // Internet Explorer 10+
+    &:-ms-input-placeholder {
+        color: #c5c8ce;
+    }
+    // Safari and Chrome
+    &::-webkit-input-placeholder {
+        color: #c5c8ce;
+    }
+}
+
+@mixin input() {
+    display: inline-block;
+    width: 100%;
+    height: $input-height;
+    line-height: $input-height;
+    padding: 4px 7px;
+    font-size: 12px;
+    border: 1px solid #dcdee2;
+    border-radius: 2px;
+    color: #515a6e;
+    background-color: #fff;
+    background-image: none;
+    position: relative;
+    outline: none;
+    cursor: text;
+    @include placeholder();
+
+    //transition: border @transition-time @ease-in-out, background @transition-time @ease-in-out, box-shadow @transition-time @ease-in-out;
+
+    &:hover {
+        border-color: #57a3f3;
+    }
+
+    &:focus {
+        border-color: #57a3f3;
+    }
+
+    &[disabled] {
+        background-color: #f3f3f3;
+        opacity: 1;
+        cursor: not-allowed;
+        color: #ccc;
+        &:hover {
+            border-color: #dcdee2;
+        }
+    }
+
+    // Reset height for textarea
+    // textarea& {
+    //     max-width: 100%;
+    //     height: auto;
+    //     min-height: $input-height;
+    //     vertical-align: bottom;
+    //     font-size: 12px;
+    // }
+
+    // Size
+    &-large {
+        @include input-large();
+    }
+
+    &-small {
+        @include input-small();
+    }
+}
+
+.#{$input-prefix-cls} {
+    @include input();
+
     &-wrapper {
         display: inline-block;
         width: 100%;
@@ -50,5 +136,12 @@ $input-color: #515a6e;
     &-suffix {
         left: auto;
         right: 0;
+    }
+
+    &-with-prefix {
+        padding-left: 32px;
+    }
+    &-with-suffix {
+        padding-right: 32px;
     }
 }
