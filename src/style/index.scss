@@ -109,6 +109,13 @@ $input-color: #515a6e;
         z-index: 3;
     }
 
+    &-hide-icon &-icon {
+        display: none;
+    }
+    &-icon-validate {
+        display: none;
+    }
+
     &-icon-clear {
         display: none;
     }
@@ -117,6 +124,26 @@ $input-color: #515a6e;
         .#{input-prefix-cls}-icon-clear {
             display: inline-block;
         }
+    }
+
+    &-icon-normal + & {
+        padding-right: 32px;
+    }
+
+    &-hide-icon &-icon-normal + & {
+        padding-right: 7px;
+    }
+
+    &-wrapper-large &-icon {
+        font-size: 18px;
+        height: 36px;
+        line-height: 1.5;
+    }
+    &-wrapper-small &-icon {
+        width: 24px;
+        font-size: 14px;
+        height: 24px;
+        line-height: 24px;
     }
 
     &-prefix,
