@@ -416,6 +416,70 @@ module.exports = _objectSpread;
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime-corejs2/helpers/objectWithoutProperties.js":
+/*!********************************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/helpers/objectWithoutProperties.js ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _Object$getOwnPropertySymbols = __webpack_require__(/*! ../core-js/object/get-own-property-symbols */ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-symbols.js");
+
+var objectWithoutPropertiesLoose = __webpack_require__(/*! ./objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime-corejs2/helpers/objectWithoutPropertiesLoose.js");
+
+function _objectWithoutProperties(source, excluded) {
+  if (source == null) return {};
+  var target = objectWithoutPropertiesLoose(source, excluded);
+  var key, i;
+
+  if (_Object$getOwnPropertySymbols) {
+    var sourceSymbolKeys = _Object$getOwnPropertySymbols(source);
+
+    for (i = 0; i < sourceSymbolKeys.length; i++) {
+      key = sourceSymbolKeys[i];
+      if (excluded.indexOf(key) >= 0) continue;
+      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
+      target[key] = source[key];
+    }
+  }
+
+  return target;
+}
+
+module.exports = _objectWithoutProperties;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime-corejs2/helpers/objectWithoutPropertiesLoose.js":
+/*!*************************************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/helpers/objectWithoutPropertiesLoose.js ***!
+  \*************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _Object$keys = __webpack_require__(/*! ../core-js/object/keys */ "./node_modules/@babel/runtime-corejs2/core-js/object/keys.js");
+
+function _objectWithoutPropertiesLoose(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+
+  var sourceKeys = _Object$keys(source);
+
+  var key, i;
+
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+
+  return target;
+}
+
+module.exports = _objectWithoutPropertiesLoose;
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime-corejs2/helpers/possibleConstructorReturn.js":
 /*!**********************************************************************************!*\
   !*** ./node_modules/@babel/runtime-corejs2/helpers/possibleConstructorReturn.js ***!
@@ -31781,6 +31845,114 @@ if (false) {} else {
 
 /***/ }),
 
+/***/ "./node_modules/react-widget-icon/index.js":
+/*!*************************************************!*\
+  !*** ./node_modules/react-widget-icon/index.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! ./lib */ "./node_modules/react-widget-icon/lib/index.js").default;
+
+/***/ }),
+
+/***/ "./node_modules/react-widget-icon/lib/index.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/react-widget-icon/lib/index.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime-corejs2/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime-corejs2/helpers/interopRequireWildcard.js");
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime-corejs2/helpers/interopRequireDefault */ "./node_modules/@babel/runtime-corejs2/helpers/interopRequireDefault.js");
+
+var _Object$defineProperty = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/define-property */ "./node_modules/@babel/runtime-corejs2/core-js/object/define-property.js");
+
+_Object$defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = void 0;
+
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/helpers/extends */ "./node_modules/@babel/runtime-corejs2/helpers/extends.js"));
+
+var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/helpers/objectWithoutProperties */ "./node_modules/@babel/runtime-corejs2/helpers/objectWithoutProperties.js"));
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/helpers/classCallCheck */ "./node_modules/@babel/runtime-corejs2/helpers/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/helpers/createClass */ "./node_modules/@babel/runtime-corejs2/helpers/createClass.js"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime-corejs2/helpers/possibleConstructorReturn.js"));
+
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/helpers/getPrototypeOf */ "./node_modules/@babel/runtime-corejs2/helpers/getPrototypeOf.js"));
+
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/helpers/inherits */ "./node_modules/@babel/runtime-corejs2/helpers/inherits.js"));
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/helpers/defineProperty */ "./node_modules/@babel/runtime-corejs2/helpers/defineProperty.js"));
+
+var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var _propTypes = _interopRequireDefault(__webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js"));
+
+var _classnames = _interopRequireDefault(__webpack_require__(/*! classnames */ "./node_modules/classnames/index.js"));
+
+var Icon =
+/*#__PURE__*/
+function (_Component) {
+  (0, _inherits2.default)(Icon, _Component);
+
+  function Icon() {
+    (0, _classCallCheck2.default)(this, Icon);
+    return (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(Icon).apply(this, arguments));
+  }
+
+  (0, _createClass2.default)(Icon, [{
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          prefixCls = _this$props.prefixCls,
+          type = _this$props.type,
+          spin = _this$props.spin,
+          className = _this$props.className,
+          other = (0, _objectWithoutProperties2.default)(_this$props, ["prefixCls", "type", "spin", "className"]);
+      return _react.default.createElement("i", (0, _extends2.default)({}, other, {
+        className: (0, _classnames.default)(prefixCls, "".concat(prefixCls, "-").concat(type), className, (0, _defineProperty2.default)({}, "".concat(prefixCls, "-spin"), spin))
+      }));
+    }
+  }]);
+  return Icon;
+}(_react.Component);
+
+exports.default = Icon;
+(0, _defineProperty2.default)(Icon, "propTypes", {
+  prefixCls: _propTypes.default.string,
+  className: _propTypes.default.string,
+  type: _propTypes.default.string.isRequired,
+  spin: _propTypes.default.bool
+});
+(0, _defineProperty2.default)(Icon, "defaultProps", {
+  prefixCls: 'rw-icon',
+  spin: false
+});
+
+/***/ }),
+
+/***/ "./node_modules/react-widget-icon/lib/style/index.css":
+/*!************************************************************!*\
+  !*** ./node_modules/react-widget-icon/lib/style/index.css ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
 /***/ "./node_modules/react/cjs/react.development.js":
 /*!*****************************************************!*\
   !*** ./node_modules/react/cjs/react.development.js ***!
@@ -35491,4 +35663,4 @@ if (!self.fetch) {
 /***/ })
 
 }]);
-//# sourceMappingURL=vendors.92b19667.chunk.js.map
+//# sourceMappingURL=vendors.49e1b375.chunk.js.map

@@ -1,6 +1,122 @@
 $input-prefix-cls: rw-input;
 $input-height: 32px;
 $input-color: #515a6e;
+$primary-color: #2d8cf0;
+
+@mixin input-group($inputClass) {
+    display: table;
+    width: 100%;
+    border-collapse: separate;
+    position: relative;
+    font-size: 12px;
+    top: 1px; // fixed when using in form inline,
+
+    &-large {
+        font-size: 14px;
+    }
+
+    // Undo padding and float of grid classes
+    &[class*="col-"] {
+        float: none;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    > [class*="col-"] {
+        padding-right: 8px;
+    }
+
+    &-prepend,
+    &-append,
+    > .#{$inputClass} {
+        display: table-cell;
+
+        //&:not(:first-child):not(:last-child) {
+        //    border-radius: 0;
+        //}
+    }
+    &-with-prepend .#{$inputClass},
+    &-with-prepend &-small .#{$inputClass} {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+    &-with-append .#{$inputClass},
+    &-with-append &-small .#{$inputClass} {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    // &-prepend .@{css-prefix}btn,
+    // &-append .@{css-prefix}btn
+    // {
+    //     border-color: transparent;
+    //     background-color: transparent;
+    //     color: inherit;
+    //     margin: -(@input-padding-vertical-base + 2) (-@input-padding-horizontal);
+    // }
+
+    &-prepend,
+    &-append {
+        width: 1px; // To make addon/wrap as small as possible
+        white-space: nowrap;
+        vertical-align: middle;
+    }
+
+    .#{$inputClass} {
+        width: 100%;
+        float: left;
+        margin-bottom: 0;
+        position: relative;
+        z-index: 2;
+    }
+
+    &-prepend,
+    &-append {
+        padding: 4px 7px;
+        font-size: inherit;
+        font-weight: normal;
+        line-height: 1;
+        // color: @input-color;
+        text-align: center;
+        //  background-color: @input-group-bg;
+        //    border: 1px solid @input-border-color;
+        border-radius: 2px;
+    }
+
+    // Reset rounded corners
+    > span > .#{$inputClass}:first-child,
+    > .#{$inputClass}:first-child,
+    &-prepend {
+        border-bottom-right-radius: 0 !important;
+        border-top-right-radius: 0 !important;
+    }
+
+    &-prepend {
+        border-right: 0;
+    }
+    &-append {
+        border-left: 0;
+    }
+
+    > .#{$inputClass}:last-child,
+    &-append {
+        border-bottom-left-radius: 0 !important;
+        border-top-left-radius: 0 !important;
+    }
+
+    // Sizing options
+    &-large .#{$inputClass},
+    &-large > &-prepend,
+    &-large > &-append {
+        @include input-large();
+    }
+
+    &-small .#{$inputClass},
+    &-small > &-prepend,
+    &-small > &-append {
+        @include input-small();
+    }
+}
 
 @mixin input-large() {
     font-size: 14px;
@@ -171,4 +287,72 @@ $input-color: #515a6e;
     &-with-suffix {
         padding-right: 32px;
     }
+
+    // search
+    &-search {
+        cursor: pointer;
+        padding: 0 16px !important;
+        background: $primary-color !important;
+        color: #fff !important;
+        border-color: $primary-color !important;
+        // transition: all $transition-time @ease-in-out;
+        position: relative;
+        z-index: 2;
+
+        i {
+            font-size: 16px;
+        }
+
+        &:hover {
+            background: tint($primary-color, 20%) !important;
+            border-color: tint($primary-color, 20%) !important;
+        }
+        &:active {
+            background: shade($primary-color, 5%) !important;
+            border-color: shade($primary-color, 5%) !important;
+        }
+
+        &-icon {
+            cursor: pointer;
+            // transition: color @transition-time @ease-in-out;
+            &:hover {
+                color: inherit;
+            }
+        }
+
+        &:before {
+            content: "";
+            display: block;
+            width: 1px;
+            position: absolute;
+            top: -1px;
+            bottom: -1px;
+            left: -1px;
+            background: inherit;
+        }
+    }
+
+    &-wrapper-small &-search {
+        padding: 0 12px !important;
+        i {
+            font-size: 14px;
+        }
+    }
+    &-wrapper-large &-search {
+        padding: 0 20px !important;
+        i {
+            font-size: 18px;
+        }
+    }
+    &-with-search {
+        &:hover {
+            .#{$input-prefix-cls} {
+                border-color: tint($primary-color, 20%);
+            }
+        }
+    }
+}
+
+.#{$input-prefix-cls}-group {
+    @include input-group($input-prefix-cls);
 }

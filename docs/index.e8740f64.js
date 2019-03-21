@@ -136,7 +136,7 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+/******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	var jsonpArray = window["webpackJsonp"] = window["webpackJsonp"] || [];
 /******/ 	var oldJsonpFunction = jsonpArray.push.bind(jsonpArray);
@@ -346,7 +346,18 @@ function (_Component) {
         style: {
           width: 'auto'
         }
-      }));
+      }), _react.default.createElement("div", null, _react.default.createElement(_index.default, {
+        search: true,
+        placeholder: "Enter something..."
+      }), _react.default.createElement(_index.default, {
+        search: true,
+        enterButton: true,
+        placeholder: "Enter something..."
+      }), _react.default.createElement(_index.default, {
+        search: true,
+        enterButton: "Search",
+        placeholder: "Enter something..."
+      })));
     }
   }]);
   return DEMO;
@@ -377,6 +388,8 @@ __webpack_require__(/*! ./style/index.scss */ "./examples/style/index.scss");
 __webpack_require__(/*! ./style/animate.scss */ "./examples/style/animate.scss");
 
 __webpack_require__(/*! ../src/style/index.scss */ "./src/style/index.scss");
+
+__webpack_require__(/*! react-widget-icon/lib/style/index.css */ "./node_modules/react-widget-icon/lib/style/index.css");
 
 var _Demo = _interopRequireDefault(__webpack_require__(/*! ./Demo */ "./examples/Demo.js"));
 
@@ -449,6 +462,8 @@ var _propTypes = _interopRequireDefault(__webpack_require__(/*! prop-types */ ".
 
 var _classnames4 = _interopRequireDefault(__webpack_require__(/*! classnames */ "./node_modules/classnames/index.js"));
 
+var _reactWidgetIcon = _interopRequireDefault(__webpack_require__(/*! react-widget-icon */ "./node_modules/react-widget-icon/index.js"));
+
 var _omit = _interopRequireDefault(__webpack_require__(/*! lodash/omit */ "./node_modules/lodash/omit.js"));
 
 function fixControlledValue(value) {
@@ -474,7 +489,8 @@ var propTypes = {
   inputCls: _propTypes.default.string,
   inputStyle: _propTypes.default.object,
   prefix: _propTypes.default.node,
-  suffix: _propTypes.default.node
+  suffix: _propTypes.default.node,
+  enterButton: _propTypes.default.string
 };
 
 var Input =
@@ -651,19 +667,19 @@ function (_React$Component) {
         className: "".concat(prefixCls, "-group-prepend")
       }, "$", prepend) : null, suffix !== '' ? _react.default.createElement("span", {
         className: "rw-input-suffix"
-      }, _react.default.createElement("i", {
-        className: "rw-icon rw-icon-".concat(suffix)
+      }, _react.default.createElement(_reactWidgetIcon.default, {
+        type: suffix
       })) : null, input, append ? _react.default.createElement("div", {
         className: "".concat(prefixCls, "-group-append")
       }, "$", append) : null, search && enterButton ? _react.default.createElement("div", {
         className: "".concat(prefixCls, "-group-append ").concat(prefixCls, "-search"),
         onClick: this.handleSearch
-      }, enterButton ? _react.default.createElement("i", {
-        class: "rw-icon rw-icon-ios-search"
+      }, enterButton ? _react.default.createElement(_reactWidgetIcon.default, {
+        type: "ios-search"
       }) : enterButton) : null, prefix !== '' ? _react.default.createElement("span", {
         className: "rw-input-prefix"
-      }, _react.default.createElement("i", {
-        className: "rw-icon rw-icon-".concat(prefix)
+      }, _react.default.createElement(_reactWidgetIcon.default, {
+        type: prefix
       })) : null);
     }
   }, {
@@ -714,10 +730,10 @@ exports.default = Input;
 
 __webpack_require__(/*! D:\wamp\www\github-projects\react-widget\input\node_modules\packez\lib\fetchPolyfills.js */"./node_modules/packez/lib/fetchPolyfills.js");
 __webpack_require__(/*! D:\wamp\www\github-projects\react-widget\input\node_modules\packez\lib\polyfills.js */"./node_modules/packez/lib/polyfills.js");
-module.exports = __webpack_require__(/*! D:\wamp\www\github-projects\react-widget\input\examples\index.js */"./examples/index.js");
+module.exports = __webpack_require__(/*! ./examples/index.js */"./examples/index.js");
 
 
 /***/ })
 
 /******/ });
-//# sourceMappingURL=index.13976cc4.js.map
+//# sourceMappingURL=index.e8740f64.js.map

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import Icon from 'react-widget-icon';
 import omit from 'lodash/omit';
 
 function fixControlledValue(value) {
@@ -25,6 +26,7 @@ const propTypes = {
     inputStyle: PropTypes.object,
     prefix: PropTypes.node,
     suffix: PropTypes.node,
+    enterButton: PropTypes.string,
 };
 
 export default class Input extends React.Component {
@@ -202,7 +204,7 @@ export default class Input extends React.Component {
                 {
                     suffix !== '' ? (
                         <span className="rw-input-suffix">
-                            <i className={`rw-icon rw-icon-${suffix}`}></i>
+                            <Icon type={suffix} />
                         </span >
                     ) : null
                 }
@@ -220,7 +222,7 @@ export default class Input extends React.Component {
                         >
                             {
                                 enterButton ? (
-                                    <i class="rw-icon rw-icon-ios-search"></i>
+                                    <Icon type="ios-search" />
                                 ) : enterButton
                             }
                         </div >
@@ -229,7 +231,7 @@ export default class Input extends React.Component {
                 {
                     prefix !== '' ? (
                         <span className="rw-input-prefix">
-                            <i className={`rw-icon rw-icon-${prefix}`}></i>
+                            <Icon type={prefix} />
                         </span >
                     ) : null
                 }

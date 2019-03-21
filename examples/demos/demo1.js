@@ -16,6 +16,11 @@ export default class DEMO extends Component {
                 <Input suffix="ios-search" placeholder="Enter text" style={{
                     width: 'auto'
                 }} />
+                <div>
+                    <Input search placeholder="Enter something..." />
+                    <Input search enterButton placeholder="Enter something..." />
+                    <Input search enterButton="Search" placeholder="Enter something..." />
+                </div>
             </div >
         );
     }

@@ -350,10 +350,27 @@
     position: absolute;
     right: 0;
     z-index: 3; }
+  .rw-input-hide-icon .rw-input-icon {
+    display: none; }
+  .rw-input-icon-validate {
+    display: none; }
   .rw-input-icon-clear {
     display: none; }
   .rw-input-wrapper:hover .input-prefix-cls-icon-clear {
     display: inline-block; }
+  .rw-input-icon-normal + .rw-input {
+    padding-right: 32px; }
+  .rw-input-hide-icon .rw-input-icon-normal + .rw-input {
+    padding-right: 7px; }
+  .rw-input-wrapper-large .rw-input-icon {
+    font-size: 18px;
+    height: 36px;
+    line-height: 1.5; }
+  .rw-input-wrapper-small .rw-input-icon {
+    width: 24px;
+    font-size: 14px;
+    height: 24px;
+    line-height: 24px; }
   .rw-input-prefix, .rw-input-suffix {
     width: 32px;
     height: 100%;
@@ -372,6 +389,112 @@
     padding-left: 32px; }
   .rw-input-with-suffix {
     padding-right: 32px; }
+  .rw-input-search {
+    cursor: pointer;
+    padding: 0 16px !important;
+    background: #2d8cf0 !important;
+    color: #fff !important;
+    border-color: #2d8cf0 !important;
+    position: relative;
+    z-index: 2; }
+    .rw-input-search i {
+      font-size: 16px; }
+    .rw-input-search:hover {
+      background: tint(#2d8cf0, 20%) !important;
+      border-color: tint(#2d8cf0, 20%) !important; }
+    .rw-input-search:active {
+      background: shade(#2d8cf0, 5%) !important;
+      border-color: shade(#2d8cf0, 5%) !important; }
+    .rw-input-search-icon {
+      cursor: pointer; }
+      .rw-input-search-icon:hover {
+        color: inherit; }
+    .rw-input-search:before {
+      content: "";
+      display: block;
+      width: 1px;
+      position: absolute;
+      top: -1px;
+      bottom: -1px;
+      left: -1px;
+      background: inherit; }
+  .rw-input-wrapper-small .rw-input-search {
+    padding: 0 12px !important; }
+    .rw-input-wrapper-small .rw-input-search i {
+      font-size: 14px; }
+  .rw-input-wrapper-large .rw-input-search {
+    padding: 0 20px !important; }
+    .rw-input-wrapper-large .rw-input-search i {
+      font-size: 18px; }
+  .rw-input-with-search:hover .rw-input {
+    border-color: tint(#2d8cf0, 20%); }
+
+.rw-input-group {
+  display: table;
+  width: 100%;
+  border-collapse: separate;
+  position: relative;
+  font-size: 12px;
+  top: 1px; }
+  .rw-input-group-large {
+    font-size: 14px; }
+  .rw-input-group[class*="col-"] {
+    float: none;
+    padding-left: 0;
+    padding-right: 0; }
+  .rw-input-group > [class*="col-"] {
+    padding-right: 8px; }
+  .rw-input-group-prepend, .rw-input-group-append,
+  .rw-input-group > .rw-input {
+    display: table-cell; }
+  .rw-input-group-with-prepend .rw-input,
+  .rw-input-group-with-prepend .rw-input-group-small .rw-input {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0; }
+  .rw-input-group-with-append .rw-input,
+  .rw-input-group-with-append .rw-input-group-small .rw-input {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0; }
+  .rw-input-group-prepend, .rw-input-group-append {
+    width: 1px;
+    white-space: nowrap;
+    vertical-align: middle; }
+  .rw-input-group .rw-input {
+    width: 100%;
+    float: left;
+    margin-bottom: 0;
+    position: relative;
+    z-index: 2; }
+  .rw-input-group-prepend, .rw-input-group-append {
+    padding: 4px 7px;
+    font-size: inherit;
+    font-weight: normal;
+    line-height: 1;
+    text-align: center;
+    border-radius: 2px; }
+  .rw-input-group > span > .rw-input:first-child,
+  .rw-input-group > .rw-input:first-child, .rw-input-group-prepend {
+    border-bottom-right-radius: 0 !important;
+    border-top-right-radius: 0 !important; }
+  .rw-input-group-prepend {
+    border-right: 0; }
+  .rw-input-group-append {
+    border-left: 0; }
+  .rw-input-group > .rw-input:last-child, .rw-input-group-append {
+    border-bottom-left-radius: 0 !important;
+    border-top-left-radius: 0 !important; }
+  .rw-input-group-large .rw-input,
+  .rw-input-group-large > .rw-input-group-prepend,
+  .rw-input-group-large > .rw-input-group-append {
+    font-size: 14px;
+    padding: 6px 7px;
+    height: 36px; }
+  .rw-input-group-small .rw-input,
+  .rw-input-group-small > .rw-input-group-prepend,
+  .rw-input-group-small > .rw-input-group-append {
+    padding: 1px 7px;
+    height: 24px;
+    border-radius: 3px; }
 
 
-/*# sourceMappingURL=index.5f2af63e.css.map*/
+/*# sourceMappingURL=index.fa7dde2a.css.map*/
