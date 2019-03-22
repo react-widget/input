@@ -26,7 +26,13 @@ const propTypes = {
     inputStyle: PropTypes.object,
     prefix: PropTypes.node,
     suffix: PropTypes.node,
-    enterButton: PropTypes.string,
+    icon: PropTypes.string,
+    prepend: PropTypes.node,
+    append: PropTypes.node,
+    search: PropTypes.bool,
+    enterButton: PropTypes.any,
+    clearable: PropTypes.bool,
+    maxLength: PropTypes.number,
 };
 
 export default class Input extends React.Component {
@@ -41,6 +47,7 @@ export default class Input extends React.Component {
         size: '',
         prefix: '',
         suffix: '',
+        enterButton: false,
     };
 
     focus() {
@@ -119,6 +126,34 @@ export default class Input extends React.Component {
                 onKeyDown={this.handleKeyDown}
             />
         );
+    }
+
+    renderPrepend() {
+        const { prepend, prefixCls } = this.props;
+
+        return prepend ?
+            (
+                <div className={`${prefixCls}-group-prepend`} >${prepend}</div>
+            ) :
+            null
+    }
+
+    renderAppend() {
+        const { append, prefixCls } = this.props;
+
+        return append ?
+            (
+                <div className={`${prefixCls}-group-append`} >${append}</div>
+            ) :
+            null
+    }
+
+    renderPrefixIcon() {
+        const { prefixCls, disabled, prefix } = this.props;
+    }
+
+    renderSuffixIcon() {
+        const { clearable, prefixCls, disabled, value, icon, search, enterButton, append } = this.props;
     }
 
     getTextareaClassName() {
