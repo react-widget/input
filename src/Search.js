@@ -63,7 +63,10 @@ export default class Search extends React.Component {
             suffix = "ios-search";
         } else {
             append = enterButton === true ? (
-                <Icon type="ios-search" />
+                <Icon
+                    type="ios-search"
+                    className={`${prefixCls}-icon-search`}
+                />
             ) : enterButton;
         }
 

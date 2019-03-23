@@ -266,8 +266,8 @@
     > span > .#{$inputClass}:first-child,
     > .#{$inputClass}:first-child,
     &-prepend {
-        border-bottom-right-radius: 0 !important;
-        border-top-right-radius: 0 !important;
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
 
         // Reset Select's style in addon
         .#{$css-prefix}-select .#{$css-prefix}-select-selection {
@@ -285,8 +285,8 @@
 
     > .#{$inputClass}:last-child,
     &-append {
-        border-bottom-left-radius: 0 !important;
-        border-top-left-radius: 0 !important;
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
 
         // Reset Select's style in addon
         .#{$css-prefix}-select .#{$css-prefix}-select-selection {

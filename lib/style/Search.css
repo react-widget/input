@@ -1,0 +1,65 @@
+
+.input-group-error-prepend, .input-group-error-append {
+  background-color: #fff;
+  border: 1px solid #ed4014; }
+  .input-group-error-prepend .rwselect-selection, .input-group-error-append .rwselect-selection {
+    background-color: inherit;
+    border: 1px solid transparent; }
+
+.input-group-error-prepend {
+  border-right: 0; }
+
+.input-group-error-append {
+  border-left: 0; }
+
+.rw-input-with-search .rw-input-suffix {
+  cursor: pointer;
+  color: tint(#808695, 20%); }
+  .rw-input-with-search .rw-input-suffix .rw-input-icon {
+    color: inherit; }
+  .rw-input-with-search .rw-input-suffix:hover {
+    color: #808695; }
+  .rw-input-with-search .rw-input-suffix:active {
+    color: shade(#808695, 10%); }
+
+.rw-input-with-search > .rw-input-group-append {
+  cursor: pointer;
+  background: #2d8cf0;
+  color: #fff;
+  border-color: #2d8cf0;
+  position: relative;
+  z-index: 2; }
+  .rw-input-with-search > .rw-input-group-append:hover {
+    background: tint(#2d8cf0, 20%);
+    border-color: tint(#2d8cf0, 20%); }
+  .rw-input-with-search > .rw-input-group-append:active {
+    background: shade(#2d8cf0, 5%);
+    border-color: shade(#2d8cf0, 5%); }
+  .rw-input-with-search > .rw-input-group-append:before {
+    content: "";
+    display: block;
+    width: 1px;
+    position: absolute;
+    top: -1px;
+    bottom: -1px;
+    left: -1px;
+    background: inherit; }
+
+.rw-input-with-search > .rw-input-group-append {
+  padding: 0 16px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none; }
+  .rw-input-with-search > .rw-input-group-append .rw-input-icon-search {
+    font-size: 16px; }
+
+.rw-input-with-search.rw-input-wrapper-small > .rw-input-group-append {
+  padding: 0 12px; }
+  .rw-input-with-search.rw-input-wrapper-small > .rw-input-group-append .rw-input-icon-search {
+    font-size: 14px; }
+
+.rw-input-with-search.rw-input-wrapper-large > .rw-input-group-append {
+  padding: 0 20px; }
+  .rw-input-with-search.rw-input-wrapper-large > .rw-input-group-append .rw-input-icon-search {
+    font-size: 18px; }
