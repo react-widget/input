@@ -1,0 +1,48 @@
+//Base
+$css-prefix: rw;
+$error-color: #ed4014;
+$primary-color: #2d8cf0;
+$btn-disable-color: #c5c8ce;
+$border-color-base: #dcdee2;
+$btn-border-radius: 4px;
+$btn-border-radius-small: 3px;
+$text-color: #515a6e;
+$font-size-base: 14px;
+$font-size-small: 12px;
+$font-size-large: 16px;
+$body-background: #fff;
+$component-background: #fff;
+$font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial,
+    sans-serif;
+$code-family: Consolas, Menlo, Courier, monospace;
+$title-color: #17233d;
+$text-color: #515a6e;
+$font-size-base: 14px;
+$font-size-small: 12px;
+$font-size-large: 16px;
+$line-height-base: 1.5;
+$line-height-computed: floor(($font-size-base * $line-height-base));
+$border-radius-base: 4px;
+$border-radius-small: 2px;
+$cursor-disabled: not-allowed;
+
+//Input
+$input-prefix-cls: rw-input;
+$input-height-base: 32px;
+$input-height-large: 36px;
+$input-height-small: 24px;
+
+$input-padding-horizontal: 7px;
+$input-padding-vertical-base: 4px;
+$input-padding-vertical-small: 1px;
+$input-padding-vertical-large: 6px;
+
+$input-placeholder-color: $btn-disable-color;
+$input-color: $text-color;
+$input-border-color: $border-color-base;
+$input-bg: #fff;
+$input-group-bg: #f8f8f9;
+
+$input-hover-border-color: $primary-color;
+$input-focus-border-color: $primary-color;
+$input-disabled-bg: #f3f3f3;

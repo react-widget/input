@@ -1,0 +1,337 @@
+@function tint($color, $weight: 20%) {
+    @return mix(#fff, $color, $weight);
+}
+@function shade($color, $weight: 10%) {
+    @return mix(#000, $color, $weight);
+}
+
+@mixin placeholder($color: $input-placeholder-color) {
+    // Firefox
+    &::-moz-placeholder {
+        color: $color;
+        opacity: 1; // Override Firefox's unusual default opacity; see https://github.com/twbs/bootstrap/pull/11526
+    }
+    // Internet Explorer 10+
+    &:-ms-input-placeholder {
+        color: $color;
+    }
+    // Safari and Chrome
+    &::-webkit-input-placeholder {
+        color: $color;
+    }
+}
+
+@mixin hover($color: $input-hover-border-color) {
+    border-color: tint($color, 20%);
+}
+@mixin hover-error() {
+    border-color: $error-color;
+}
+
+@mixin active($color: $input-hover-border-color) {
+    border-color: tint($color, 20%);
+    outline: 0;
+    box-shadow: 0 0 0 2px fade($color, 20%);
+}
+@mixin active-error() {
+    border-color: $error-color;
+    outline: 0;
+    box-shadow: 0 0 0 2px fade($error-color, 20%);
+}
+
+@mixin disabled() {
+    background-color: $input-disabled-bg;
+    opacity: 1;
+    cursor: $cursor-disabled;
+    color: #ccc;
+    &:hover {
+        @include hover($input-border-color);
+    }
+}
+
+@mixin input-large() {
+    font-size: $font-size-base;
+    padding: $input-padding-vertical-large $input-padding-horizontal;
+    height: $input-height-large;
+}
+
+@mixin input-small() {
+    padding: $input-padding-vertical-small $input-padding-horizontal;
+    height: $input-height-small;
+    border-radius: $btn-border-radius-small;
+}
+
+@mixin input() {
+    display: inline-block;
+    width: 100%;
+    height: $input-height-base;
+    line-height: $line-height-base;
+    padding: $input-padding-vertical-base $input-padding-horizontal;
+    font-size: $font-size-small;
+    border: 1px solid $input-border-color;
+    border-radius: $btn-border-radius;
+    color: $input-color;
+    background-color: $input-bg;
+    background-image: none;
+    position: relative;
+    cursor: text;
+    @include placeholder();
+    // transition: border $transition-time $ease-in-out, background $transition-time $ease-in-out,
+    //     box-shadow $transition-time $ease-in-out;
+
+    &:hover {
+        @include hover();
+    }
+
+    &:focus {
+        @include active();
+    }
+
+    //fieldset[disabled] &,
+    &-disabled,
+    &[disabled] {
+        @include disabled();
+    }
+
+    // Reset height for textarea
+    textarea.#{$input-prefix-cls} {
+        max-width: 100%;
+        height: auto;
+        min-height: $input-height-base;
+        vertical-align: bottom;
+        font-size: $font-size-base;
+    }
+
+    // Size
+    &-large {
+        @include input-large();
+    }
+
+    &-small {
+        @include input-small();
+    }
+}
+
+@mixin input-affix-wrapper($inputClass) {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+
+    &:hover .#{$inputClass}:not(.#{$inputClass}-disabled) {
+        @include hover();
+    }
+
+    // .#{$inputClass} {
+    //     position: relative;
+    //     text-align: inherit;
+    // }
+
+    // .#{$inputClass}-prefix,
+    // .#{$inputClass}-suffix {
+    //     position: absolute;
+    //     top: 50%;
+    //     z-index: 2;
+    //     color: $input-color;
+    //     line-height: 0;
+    //     transform: translateY(-50%);
+    //     :not(.anticon) {
+    //         line-height: $line-height-base;
+    //     }
+    // }
+
+    // .#{$inputClass}-prefix {
+    //     left: $input-padding-horizontal-base + 1px;
+    // }
+
+    // .#{$inputClass}-suffix {
+    //     right: $input-padding-horizontal-base + 1px;
+    // }
+
+    // .#{$inputClass}:not(:first-child) {
+    //     padding-left: $input-padding-horizontal-base + $input-affix-width;
+    // }
+
+    // .#{$inputClass}:not(:last-child) {
+    //     padding-right: $input-padding-horizontal-base + $input-affix-width;
+    // }
+}
+
+@mixin input-error() {
+    border: 1px solid $error-color;
+    &:hover {
+        @include hover-error;
+    }
+    &:focus {
+        @include active-error;
+    }
+}
+
+@mixin input-group($inputClass) {
+    display: table;
+    width: 100%;
+    border-collapse: separate;
+    position: relative;
+    font-size: $font-size-small;
+    // top: 1px; // fixed when using in form inline,
+
+    &-large {
+        font-size: $font-size-base;
+    }
+
+    // Undo padding and float of grid classes
+    &[class*="col-"] {
+        float: none;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    > [class*="col-"] {
+        padding-right: 8px;
+    }
+
+    &-prepend,
+    &-append,
+    > .#{$inputClass}-affix-wrapper,
+    > .#{$inputClass} {
+        display: table-cell;
+
+        //&:not(:first-child):not(:last-child) {
+        //    border-radius: 0;
+        //}
+    }
+
+    > .#{$inputClass}-affix-wrapper {
+        > .#{$inputClass} {
+            display: inline-block;
+            z-index: 0;
+        }
+    }
+
+    &-with-prepend .#{$inputClass},
+    &-with-prepend.#{$inputClass}-small .#{$inputClass} {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+    &-with-append .#{$inputClass},
+    &-with-append.#{$inputClass}-small .#{$inputClass} {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    &-prepend .#{$css-prefix}btn,
+    &-append .#{$css-prefix}btn {
+        border-color: transparent;
+        background-color: transparent;
+        color: inherit;
+        margin: -($input-padding-vertical-base + 2) (-$input-padding-horizontal);
+    }
+
+    &-prepend,
+    &-append {
+        width: 1px; // To make addon/wrap as small as possible
+        white-space: nowrap;
+        vertical-align: middle;
+    }
+
+    .#{$inputClass} {
+        width: 100%;
+        float: left;
+        margin-bottom: 0;
+        position: relative;
+        z-index: 2;
+    }
+
+    &-prepend,
+    &-append {
+        padding: $input-padding-vertical-base $input-padding-horizontal;
+        font-size: inherit;
+        font-weight: normal;
+        line-height: 1;
+        color: $input-color;
+        text-align: center;
+        background-color: $input-group-bg;
+        border: 1px solid $input-border-color;
+        border-radius: $btn-border-radius;
+
+        // Reset Select's style in addon
+        .#{$css-prefix}select {
+            margin: -($input-padding-vertical-base + 1) (-$input-padding-horizontal); // lesshint spaceAroundOperator: false
+
+            &-selection {
+                background-color: inherit;
+                margin: -1px;
+                border: 1px solid transparent;
+            }
+
+            &-visible .#{$css-prefix}select-selection {
+                box-shadow: none;
+            }
+        }
+    }
+
+    // Reset rounded corners
+    > span > .#{$inputClass}:first-child,
+    > .#{$inputClass}:first-child,
+    &-prepend {
+        border-bottom-right-radius: 0 !important;
+        border-top-right-radius: 0 !important;
+
+        // Reset Select's style in addon
+        .#{$css-prefix}-select .#{$css-prefix}-select-selection {
+            border-bottom-right-radius: 0;
+            border-top-right-radius: 0;
+        }
+    }
+
+    &-prepend {
+        border-right: 0;
+    }
+    &-append {
+        border-left: 0;
+    }
+
+    > .#{$inputClass}:last-child,
+    &-append {
+        border-bottom-left-radius: 0 !important;
+        border-top-left-radius: 0 !important;
+
+        // Reset Select's style in addon
+        .#{$css-prefix}-select .#{$css-prefix}-select-selection {
+            border-bottom-left-radius: 0;
+            border-top-left-radius: 0;
+        }
+    }
+
+    // Sizing options
+    &-large .#{$inputClass},
+    &-large > &-prepend,
+    &-large > &-append {
+        @include input-large();
+    }
+
+    &-small .#{$inputClass},
+    &-small > &-prepend,
+    &-small > &-append {
+        @include input-small();
+    }
+}
+
+.input-group-error {
+    &-prepend,
+    &-append {
+        background-color: #fff;
+        border: 1px solid $error-color;
+        .#{$css-prefix}select {
+            &-selection {
+                background-color: inherit;
+                border: 1px solid transparent;
+            }
+        }
+    }
+    &-prepend {
+        border-right: 0;
+    }
+    &-append {
+        border-left: 0;
+    }
+}
