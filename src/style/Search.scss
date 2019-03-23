@@ -17,10 +17,14 @@
     }
 
     &-with-search {
-        &:hover {
-            .#{$input-prefix-cls} {
-                border-color: tint($primary-color, 20%);
-            }
+        // &:hover {
+        //     .#{$input-prefix-cls} {
+        //         border-color: tint($primary-color, 20%);
+        //     }
+        // }
+
+        .#{$input-prefix-cls}-suffix {
+            cursor: pointer;
         }
 
         > .#{$input-prefix-cls}-group-append {

@@ -23,19 +23,23 @@ const propTypes = {
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     style: PropTypes.object,
     type: PropTypes.string,
+    maxLength: PropTypes.number,
     onPressEnter: PropTypes.func,
     onKeyDown: PropTypes.func,
     onChange: PropTypes.func,
     inputClassName: PropTypes.string,
     inputStyle: PropTypes.object,
-    prepend: PropTypes.node,
-    append: PropTypes.node,
     allowClear: PropTypes.bool,
     //search: PropTypes.bool,
     //enterButton: PropTypes.any,
+    prepend: PropTypes.node,
+    prependProps: PropTypes.object,
+    append: PropTypes.node,
+    appendProps: PropTypes.object,
     prefix: PropTypes.node,
+    prefixProps: PropTypes.object,
     suffix: PropTypes.node,
-    maxLength: PropTypes.number,
+    suffixProps: PropTypes.object,
 };
 
 export default class Input extends React.Component {
@@ -45,6 +49,10 @@ export default class Input extends React.Component {
         prefixCls: 'rw-input',
         type: 'text',
         disabled: false,
+        prependProps: {},
+        appendProps: {},
+        prefixProps: {},
+        suffixProps: {},
     };
 
     static getDerivedStateFromProps(nextProps) {
@@ -111,16 +119,16 @@ export default class Input extends React.Component {
         }
     }
 
-    getInputClassName() {
-        const { prefixCls, size, disabled, inputClassName, prefix, suffix } = this.props;
-        return classnames(prefixCls, {
-            [`${prefixCls}-${size}`]: size,
-            [`${prefixCls}-disabled`]: disabled,
-            [`${prefixCls}-with-prefix`]: prefix,
-            [`${prefixCls}-with-suffix`]: suffix,
-            [inputClassName]: inputClassName,
-        });
-    }
+    // getInputClassName() {
+    //     const { prefixCls, size, disabled, inputClassName, prefix, suffix } = this.props;
+    //     return classnames(prefixCls, {
+    //         [`${prefixCls}-${size}`]: size,
+    //         [`${prefixCls}-disabled`]: disabled,
+    //         [`${prefixCls}-with-prefix`]: prefix,
+    //         [`${prefixCls}-with-suffix`]: suffix,
+    //         [inputClassName]: inputClassName,
+    //     });
+    // }
 
     saveInput = (input) => {
         this.input = input;
@@ -148,26 +156,39 @@ export default class Input extends React.Component {
             inputStyle,
             type,
             maxLength,
+            size,
+            disabled,
+            inputClassName
         } = props;
 
         const { value } = this.state;
         const otherProps = omit(props, Object.keys(propTypes));
 
+        const prefixIcon = this.renderPrefixIcon();
+        const suffixIcon = this.renderSuffixIcon();
+        const inputCls = classnames(prefixCls, {
+            [`${prefixCls}-${size}`]: size,
+            [`${prefixCls}-disabled`]: disabled,
+            [`${prefixCls}-with-prefix`]: !!prefixIcon,
+            [`${prefixCls}-with-suffix`]: !!suffixIcon,
+            [inputClassName]: inputClassName,
+        });
+
         const Input = (
             <>
-                {this.renderPrefixIcon()}
+                {prefixIcon}
                 <input
                     {...otherProps}
                     ref={this.saveInput}
                     type={type}
-                    className={this.getInputClassName()}
+                    className={inputCls}
                     style={inputStyle}
                     maxLength={maxLength}
                     onChange={this.handleChange}
                     onKeyDown={this.handleKeyDown}
                     value={fixControlledValue(value)}
                 />
-                {this.renderSuffixIcon()}
+                {suffixIcon}
             </>
         );
 
@@ -187,41 +208,55 @@ export default class Input extends React.Component {
     }
 
     renderPrepend() {
-        const { prepend, prefixCls } = this.props;
+        const { prepend, prependProps, prefixCls } = this.props;
 
         return prepend ?
             (
-                <div className={`${prefixCls}-group-prepend`} >{prepend}</div>
+                <div
+                    {...prependProps}
+                    className={classnames(`${prefixCls}-group-prepend`, prependProps.className)}
+                >{prepend}</div>
             ) :
             null
     }
 
     renderAppend() {
-        const { append, prefixCls } = this.props;
+        const { append, appendProps, prefixCls } = this.props;
 
         return append ?
             (
-                <div className={`${prefixCls}-group-append`} >{append}</div>
+                <div
+                    {...appendProps}
+                    className={classnames(`${prefixCls}-group-append`, appendProps.className)}
+                >{append}</div>
             ) :
             null
     }
 
     renderPrefixIcon() {
-        const { prefixCls, prefix } = this.props;
+        const { prefixCls, prefix, prefixProps } = this.props;
 
         if (prefix) {
             return (
-                <span className={`${prefixCls}-prefix`} >
+                <span
+                    {...prefixProps}
+                    className={classnames(`${prefixCls}-prefix`, prefixProps.className)}
+                >
                     {
                         typeof prefix === 'string' ? (
                             <Icon
                                 type={prefix}
                                 className={classnames({
-                                    // [`${prefixCls}-icon`]: true,
+                                    [`${prefixCls}-icon`]: true,
                                     // [`${prefixCls}-icon-normal`]: true,
                                 })}
                             />
-                        ) : prefix
+                        ) : React.cloneElement(prefix, {
+                            className: classnames({
+                                [prefix.props.className]: prefix.props.className,
+                                [`${prefixCls}-icon`]: true,
+                            })
+                        })
                     }
                 </span >
             );
@@ -232,24 +267,32 @@ export default class Input extends React.Component {
     }
 
     renderSuffixIcon() {
-        const { prefixCls, suffix } = this.props;
+        const { prefixCls, suffix, suffixProps } = this.props;
 
         const clearIcon = this.renderClearIcon();
 
         if (suffix || clearIcon) {
             return (
-                <span className={`${prefixCls}-suffix`}>
+                <span
+                    {...suffixProps}
+                    className={classnames(`${prefixCls}-suffix`, suffixProps.className)}
+                >
                     {
                         clearIcon ? clearIcon : (
                             typeof suffix === 'string' ? (
                                 <Icon
                                     type={suffix}
                                     className={classnames({
-                                        // [`${prefixCls}-icon`]: true,
+                                        [`${prefixCls}-icon`]: true,
                                         // [`${prefixCls}-icon-normal`]: true,
                                     })}
                                 />
-                            ) : suffix
+                            ) : React.cloneElement(suffix, {
+                                className: classnames({
+                                    [suffix.props.className]: suffix.props.className,
+                                    [`${prefixCls}-icon`]: true,
+                                })
+                            })
                         )
                     }
                 </span>
@@ -271,11 +314,10 @@ export default class Input extends React.Component {
                 type="ios-close-circle"
                 onClick={this.handleReset}
                 className={classnames({
-                    //  [`${prefixCls}-icon`]: true,
+                    [`${prefixCls}-icon`]: true,
                     [`${prefixCls}-icon-clear`]: true,
                     //  [`${prefixCls}-icon-normal`]: true,
                 })}
-                role="button"
             />
         );
     }
@@ -310,15 +352,6 @@ export default class Input extends React.Component {
         });
     };
 
-    getTextareaClassName() {
-        const { prefixCls, disabled, inputCls } = this.props;
-        return classnames({
-            [`${prefixCls}`]: true,
-            [`${prefixCls}-disabled`]: disabled,
-            [inputCls]: inputCls,
-        });
-    }
-
     getWrapperClassName() {
         const { prefixCls, className, size, prepend, append, search, enterButton } = this.props;
         return classnames({
@@ -336,7 +369,7 @@ export default class Input extends React.Component {
     }
 
     render() {
-        const { type, style } = this.props;
+        const { style } = this.props;
 
         return (
             <div
@@ -344,9 +377,7 @@ export default class Input extends React.Component {
                 style={style}
             >
                 {
-                    type === 'textarea' ?
-                        this.renderTextarea() :
-                        this.renderInput()
+                    this.renderInput()
                 }
             </div>
         );

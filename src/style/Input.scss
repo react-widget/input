@@ -20,15 +20,19 @@
     }
 
     &-icon {
-        width: 32px;
-        height: $input-height-base;
-        line-height: $input-height-base;
+        // width: 32px;
+        // height: $input-height-base;
+        // line-height: $input-height-base;
         font-size: 16px;
         text-align: center;
         // color: @subsidiary-color;
         position: absolute;
         right: 0;
         z-index: 3;
+
+        top: 50%;
+        left: 50%;
+        transform: translateY(-50%) translateX(-50%);
     }
 
     // &-hide-icon &-icon {
@@ -59,14 +63,14 @@
 
     &-wrapper-large &-icon {
         font-size: 18px;
-        height: 36px;
-        line-height: 1.5;
+        // height: 36px;
+        // line-height: 1.5;
     }
     &-wrapper-small &-icon {
-        //width: 24px;
         font-size: 14px;
-        height: 24px;
-        line-height: 24px;
+        //width: 24px;
+        // height: 24px;
+        // line-height: 24px;
     }
 
     &-prefix,
@@ -78,30 +82,30 @@
         left: 0;
         top: 0;
         z-index: 1;
-        i {
-            font-size: 16px;
-            line-height: $input-height-base;
-        }
+        // i {
+        //     font-size: 16px;
+        //     line-height: $input-height-base;
+        // }
     }
     &-suffix {
         left: auto;
         right: 0;
     }
 
-    &-wrapper-small &-prefix,
-    &-wrapper-small &-suffix {
-        i {
-            font-size: 14px;
-            line-height: $input-height-small;
-        }
-    }
-    &-wrapper-large &-prefix,
-    &-wrapper-large &-suffix {
-        i {
-            font-size: 18px;
-            line-height: $input-height-large;
-        }
-    }
+    // &-wrapper-small &-prefix,
+    // &-wrapper-small &-suffix {
+    //     i {
+    //         font-size: 14px;
+    //         line-height: $input-height-small;
+    //     }
+    // }
+    // &-wrapper-large &-prefix,
+    // &-wrapper-large &-suffix {
+    //     i {
+    //         font-size: 18px;
+    //         line-height: $input-height-large;
+    //     }
+    // }
 
     &-with-prefix {
         padding-left: 32px;

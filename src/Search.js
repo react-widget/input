@@ -54,22 +54,18 @@ export default class Search extends React.Component {
             ...restProps
         } = this.props;
 
-        if (enterButton === false) {
-            return (
-                <Input
-                    onPressEnter={this.onSearch}
-                    {...restProps}
-                    prefixCls={prefixCls}
-                    className={className}
-                    ref={this.saveInput}
-                    suffix="ios-search"
-                />
-            );
-        }
-
         const inputClassName = classnames(className, {
-            [`${prefixCls}-with-search`]: !!enterButton,
+            [`${prefixCls}-with-search`]: true,
         });
+        let suffix, append;
+
+        if (enterButton === false) {
+            suffix = "ios-search";
+        } else {
+            append = enterButton === true ? (
+                <Icon type="ios-search" />
+            ) : enterButton;
+        }
 
         return (
             <Input
@@ -78,9 +74,8 @@ export default class Search extends React.Component {
                 prefixCls={prefixCls}
                 className={inputClassName}
                 ref={this.saveInput}
-                append={enterButton === true ? (
-                    <Icon type="ios-search" />
-                ) : enterButton}
+                suffix={suffix}
+                append={append}
             />
         );
 
