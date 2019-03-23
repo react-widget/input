@@ -2,15 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Icon from 'react-widget-icon';
-import omit from 'lodash/omit';
 import Input from './Input';
 
-function fixControlledValue(value) {
-    if (value == null) {
-        return '';
-    }
-    return value;
-}
 
 const propTypes = {
     prefixCls: PropTypes.string,
@@ -78,44 +71,14 @@ export default class Search extends React.Component {
                 className={inputClassName}
                 ref={this.saveInput}
                 suffix={suffix}
+                suffixProps={{
+                    onClick: this.onSearch
+                }}
                 append={append}
+                appendProps={{
+                    onClick: this.onSearch
+                }}
             />
         );
-
-        // if (enterButton === true) {
-        //     return (
-        //         <Input
-        //             onPressEnter={this.onSearch}
-        //             {...restProps}
-        //             className={className}
-        //             ref={this.saveInput}
-        //             append={this.renderSearch()}
-        //         />
-        //     );
-        // }
-
-        // let inputClassName;
-
-        // if (enterButton) {
-        //     inputClassName = classNames(prefixCls, className, {
-        //         [`${prefixCls}-enter-button`]: !!enterButton,
-        //         [`${prefixCls}-${size}`]: !!size,
-        //     });
-        // } else {
-        //     inputClassName = classNames(prefixCls, className);
-        // }
-
-        // return (
-        //     <Input
-        //         onPressEnter={this.onSearch}
-        //         {...restProps}
-        //         size={size}
-        //         prefixCls={inputPrefixCls}
-        //         addonAfter={this.renderAddonAfter(prefixCls)}
-        //         suffix={this.renderSuffix(prefixCls)}
-        //         ref={this.saveInput}
-        //         className={inputClassName}
-        //     />
-        // );
     };
 }

@@ -30,8 +30,6 @@ const propTypes = {
     inputClassName: PropTypes.string,
     inputStyle: PropTypes.object,
     allowClear: PropTypes.bool,
-    //search: PropTypes.bool,
-    //enterButton: PropTypes.any,
     prepend: PropTypes.node,
     prependProps: PropTypes.object,
     append: PropTypes.node,
@@ -118,17 +116,6 @@ export default class Input extends React.Component {
             this.focus();
         }
     }
-
-    // getInputClassName() {
-    //     const { prefixCls, size, disabled, inputClassName, prefix, suffix } = this.props;
-    //     return classnames(prefixCls, {
-    //         [`${prefixCls}-${size}`]: size,
-    //         [`${prefixCls}-disabled`]: disabled,
-    //         [`${prefixCls}-with-prefix`]: prefix,
-    //         [`${prefixCls}-with-suffix`]: suffix,
-    //         [inputClassName]: inputClassName,
-    //     });
-    // }
 
     saveInput = (input) => {
         this.input = input;
