@@ -331,7 +331,7 @@ export default class Input extends React.Component {
             [`${prefixCls}-group-with-prepend`]: prepend,
             [`${prefixCls}-group-with-append`]: append || (search && enterButton),
             //[`${prefixCls}-hide-icon`]: append,
-            [`${prefixCls}-with-search`]: (search && enterButton)
+            //[`${prefixCls}-with-search`]: (search && enterButton)
         });
     }
 
