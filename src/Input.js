@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import Icon from 'react-widget-icon';
 import omit from 'lodash/omit';
+import warning from 'warning';
+import Icon from 'react-widget-icon';
 
 function fixControlledValue(value) {
     if (typeof value === 'undefined' || value === null) {
@@ -21,13 +22,11 @@ const propTypes = {
     className: PropTypes.string,
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     style: PropTypes.object,
-    type: PropTypes.string, //text textarea
-    inline: PropTypes.bool,
+    type: PropTypes.string,
     onPressEnter: PropTypes.func,
     onKeyDown: PropTypes.func,
     onChange: PropTypes.func,
-    autoFocus: PropTypes.bool,
-    inputCls: PropTypes.string,
+    inputClassName: PropTypes.string,
     inputStyle: PropTypes.object,
     prepend: PropTypes.node,
     append: PropTypes.node,
@@ -44,12 +43,8 @@ export default class Input extends React.Component {
 
     static defaultProps = {
         prefixCls: 'rw-input',
-        disabled: false,
-        autoComplete: 'off',
         type: 'text',
-        prefix: null,
-        suffix: null,
-        //enterButton: false,
+        disabled: false,
     };
 
     static getDerivedStateFromProps(nextProps) {
@@ -69,12 +64,27 @@ export default class Input extends React.Component {
         };
     }
 
+    getSnapshotBeforeUpdate(prevProps) {
+        if (shouldAffixWrapped(prevProps) !== shouldAffixWrapped(this.props)) {
+            warning(
+                this.input !== document.activeElement,
+                'Input',
+                `When Input is focused, dynamic add or remove prefix / suffix will make it lose focus caused by dom structure change.`,
+            );
+        }
+        return null;
+    }
+
+    // Since polyfill `getSnapshotBeforeUpdate` need work with `componentDidUpdate`.
+    // We keep an empty function here.
+    componentDidUpdate() { }
+
     focus() {
-        this.input && this.input.focus();
+        this.input.focus();
     }
 
     blur() {
-        this.input && this.input.blur();
+        this.input.blur();
     }
 
     select() {
@@ -102,13 +112,13 @@ export default class Input extends React.Component {
     }
 
     getInputClassName() {
-        const { prefixCls, size, disabled, inputCls, prefix, suffix } = this.props;
+        const { prefixCls, size, disabled, inputClassName, prefix, suffix } = this.props;
         return classnames(prefixCls, {
             [`${prefixCls}-${size}`]: size,
             [`${prefixCls}-disabled`]: disabled,
             [`${prefixCls}-with-prefix`]: prefix,
             [`${prefixCls}-with-suffix`]: suffix,
-            [inputCls]: inputCls,
+            [inputClassName]: inputClassName,
         });
     }
 
@@ -137,6 +147,7 @@ export default class Input extends React.Component {
             prefixCls,
             inputStyle,
             type,
+            maxLength,
         } = props;
 
         const { value } = this.state;
@@ -149,11 +160,12 @@ export default class Input extends React.Component {
                     {...otherProps}
                     ref={this.saveInput}
                     type={type}
-                    value={fixControlledValue(value)}
-                    style={inputStyle}
-                    onChange={this.handleChange}
                     className={this.getInputClassName()}
+                    style={inputStyle}
+                    maxLength={maxLength}
+                    onChange={this.handleChange}
                     onKeyDown={this.handleKeyDown}
+                    value={fixControlledValue(value)}
                 />
                 {this.renderSuffixIcon()}
             </>
@@ -200,7 +212,17 @@ export default class Input extends React.Component {
         if (prefix) {
             return (
                 <span className={`${prefixCls}-prefix`} >
-                    {prefix}
+                    {
+                        typeof prefix === 'string' ? (
+                            <Icon
+                                type={prefix}
+                                className={classnames({
+                                    // [`${prefixCls}-icon`]: true,
+                                    // [`${prefixCls}-icon-normal`]: true,
+                                })}
+                            />
+                        ) : prefix
+                    }
                 </span >
             );
         }
@@ -210,7 +232,7 @@ export default class Input extends React.Component {
     }
 
     renderSuffixIcon() {
-        const { prefixCls, allowClear, disabled, search, enterButton, append, suffix } = this.props;
+        const { prefixCls, suffix } = this.props;
 
         const clearIcon = this.renderClearIcon();
 
@@ -218,62 +240,21 @@ export default class Input extends React.Component {
             return (
                 <span className={`${prefixCls}-suffix`}>
                     {
-                        clearIcon ? clearIcon : suffix
+                        clearIcon ? clearIcon : (
+                            typeof suffix === 'string' ? (
+                                <Icon
+                                    type={suffix}
+                                    className={classnames({
+                                        // [`${prefixCls}-icon`]: true,
+                                        // [`${prefixCls}-icon-normal`]: true,
+                                    })}
+                                />
+                            ) : suffix
+                        )
                     }
                 </span>
             );
         }
-
-        // if (allowClear && !disabled && currentValue) {
-        //     return (
-        //         <Icon
-        //             type="ios-close-circle"
-        //             className={classnames({
-        //                 [`${prefixCls}-icon`]: true,
-        //                 [`${prefixCls}-icon-clear`]: true,
-        //                 [`${prefixCls}-icon-normal`]: true,
-        //             })}
-        //         />
-        //     );
-        // }
-
-        // if (search && enterButton === false) {
-        //     return (
-        //         <Icon
-        //             type="ios-search"
-        //             className={classnames({
-        //                 [`${prefixCls}-icon`]: true,
-        //                 [`${prefixCls}-search-icon`]: true,
-        //                 [`${prefixCls}-icon-normal`]: true,
-        //             })}
-        //         />
-        //     );
-        // }
-
-        // if (search && enterButton) {
-        //     return (
-        //         <div
-        //             className={classnames({
-        //                 [`${prefixCls}-group-append`]: true,
-        //                 [`${prefixCls}-search`]: true,
-        //             })}
-        //         >
-        //             {
-        //                 enterButton === true ? (
-        //                     <Icon type="ios-search" />
-        //                 ) : enterButton
-        //             }
-        //         </div>
-        //     );
-        // }
-
-        // if (suffix !== '') {
-        //     return (
-        //         <span className={`${prefixCls}-suffix`} >
-        //             <Icon type={suffix} />
-        //         </span >
-        //     )
-        // }
 
         return null;
     }
@@ -290,9 +271,9 @@ export default class Input extends React.Component {
                 type="ios-close-circle"
                 onClick={this.handleReset}
                 className={classnames({
-                    [`${prefixCls}-icon`]: true,
+                    //  [`${prefixCls}-icon`]: true,
                     [`${prefixCls}-icon-clear`]: true,
-                    [`${prefixCls}-icon-normal`]: true,
+                    //  [`${prefixCls}-icon-normal`]: true,
                 })}
                 role="button"
             />
@@ -338,38 +319,6 @@ export default class Input extends React.Component {
         });
     }
 
-    renderTextarea() {
-        const props = this.props;
-        const {
-            inputStyle,
-            style = {}
-        } = this.props;
-
-        const otherProps = omit(props, Object.keys(propTypes));
-
-        if ('value' in props) {
-            otherProps.value = fixControlledValue(props.value);
-
-            delete otherProps.defaultValue;
-        }
-
-        const { height } = style;
-
-        return this.wrapInput(
-            <textarea
-                {...otherProps}
-                ref={this.saveInput}
-                style={{
-                    height,
-                    ...inputStyle
-                }}
-                className={this.getTextareaClassName()}
-                onChange={this.handleChange}
-                onKeyDown={this.handleKeyDown}
-            />
-        );
-    }
-
     getWrapperClassName() {
         const { prefixCls, className, size, prepend, append, search, enterButton } = this.props;
         return classnames({
@@ -384,68 +333,6 @@ export default class Input extends React.Component {
             //[`${prefixCls}-hide-icon`]: append,
             [`${prefixCls}-with-search`]: (search && enterButton)
         });
-    }
-
-    wrapInput(input) {
-        const {
-            prefixCls,
-            className,
-            style = {},
-            append,
-            prepend,
-            search,
-            enterButton,
-            prefix,
-            suffix,
-        } = this.props;
-
-        return (
-            <div
-                className={this.getWrapperClassName()}
-                style={style}
-            >
-                {
-                    prepend ? (
-                        <div className={`${prefixCls}-group-prepend`} >${prepend}</div>
-                    ) : null
-                }
-                {
-                    suffix !== '' ? (
-                        <span className="rw-input-suffix">
-                            <Icon type={suffix} />
-                        </span >
-                    ) : null
-                }
-                {input}
-                {
-                    append ? (
-                        <div className={`${prefixCls}-group-append`} >${append}</div>
-                    ) : null
-                }
-                {
-                    search && enterButton ? (
-                        <div
-                            className={`${prefixCls}-group-append ${prefixCls}-search`}
-                            onClick={this.handleSearch}
-                        >
-                            {
-                                enterButton ? (
-                                    <Icon type="ios-search" />
-                                ) : enterButton
-                            }
-                        </div >
-                    ) : null
-                }
-                {
-                    prefix !== '' ? (
-                        <span className="rw-input-prefix">
-                            <Icon type={prefix} />
-                        </span >
-                    ) : null
-                }
-
-            </div >
-        );
     }
 
     render() {
