@@ -32,7 +32,7 @@
 
 Input 的其他属性和 React 自带的 [input](https://facebook.github.io/react/docs/events.html#supported-events) 一致。
 
-### Search
+### Input.Search
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | enterButton | 是否有确认按钮，可设为按钮文字。该属性会与 append 冲突。 | boolean\|ReactNode | false |
@@ -40,7 +40,7 @@ Input 的其他属性和 React 自带的 [input](https://facebook.github.io/reac
 
 其余属性和 Input 一致。
 
-### TextArea
+### Input.TextArea
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | autosize | 自适应内容高度，可设置为 `true|false` 或对象：`{ minRows: 2, maxRows: 6 }` | boolean\|object | false |
