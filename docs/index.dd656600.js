@@ -1674,6 +1674,12 @@ var _interopRequireDefault = __webpack_require__(/*! @babel/runtime-corejs2/help
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+Object.defineProperty(exports, "Input", {
+  enumerable: true,
+  get: function get() {
+    return _Input.default;
+  }
+});
 Object.defineProperty(exports, "Search", {
   enumerable: true,
   get: function get() {
@@ -1727,4 +1733,4 @@ module.exports = __webpack_require__(/*! ./examples/index.js */"./examples/index
 /***/ })
 
 /******/ });
-//# sourceMappingURL=index.8f730958.js.map
+//# sourceMappingURL=index.dd656600.js.map

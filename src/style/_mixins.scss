@@ -80,9 +80,8 @@
     background-image: none;
     position: relative;
     cursor: text;
+    z-index: 2;
     @include placeholder();
-    // transition: border $transition-time $ease-in-out, background $transition-time $ease-in-out,
-    //     box-shadow $transition-time $ease-in-out;
 
     &:hover {
         @include hover();
@@ -92,7 +91,6 @@
         @include active();
     }
 
-    //fieldset[disabled] &,
     &-disabled,
     &[disabled] {
         @include disabled();
@@ -116,40 +114,6 @@
     &:hover .#{$inputClass}:not(.#{$inputClass}-disabled) {
         @include hover();
     }
-
-    // .#{$inputClass} {
-    //     position: relative;
-    //     text-align: inherit;
-    // }
-
-    // .#{$inputClass}-prefix,
-    // .#{$inputClass}-suffix {
-    //     position: absolute;
-    //     top: 50%;
-    //     z-index: 2;
-    //     color: $input-color;
-    //     line-height: 0;
-    //     transform: translateY(-50%);
-    //     :not(.anticon) {
-    //         line-height: $line-height-base;
-    //     }
-    // }
-
-    // .#{$inputClass}-prefix {
-    //     left: $input-padding-horizontal-base + 1px;
-    // }
-
-    // .#{$inputClass}-suffix {
-    //     right: $input-padding-horizontal-base + 1px;
-    // }
-
-    // .#{$inputClass}:not(:first-child) {
-    //     padding-left: $input-padding-horizontal-base + $input-affix-width;
-    // }
-
-    // .#{$inputClass}:not(:last-child) {
-    //     padding-right: $input-padding-horizontal-base + $input-affix-width;
-    // }
 }
 
 @mixin input-error() {
@@ -174,7 +138,6 @@
         font-size: $font-size-base;
     }
 
-    // Sizing options
     &-large .#{$inputClass},
     &-large > &-prepend,
     &-large > &-append {
@@ -192,51 +155,24 @@
         @include suffix-padding($inputClass);
     }
 
-    // Undo padding and float of grid classes
-    // &[class*="col-"] {
-    //     float: none;
-    //     padding-left: 0;
-    //     padding-right: 0;
-    // }
-
-    // > [class*="col-"] {
-    //     padding-right: 8px;
-    // }
-
     &-prepend,
     &-append,
     > .#{$inputClass}-affix-wrapper,
     > .#{$inputClass} {
         display: table-cell;
-
-        //&:not(:first-child):not(:last-child) {
-        //    border-radius: 0;
-        //}
     }
 
-    // > .#{$inputClass}-affix-wrapper {
-    //     > .#{$inputClass} {
-    //         display: inline-block;
-    //         z-index: 0;
-    //     }
-    // }
-
+    &-with-prepend .#{$inputClass}-prefix,
     &-with-prepend .#{$inputClass} {
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
     }
+
+    &-with-append .#{$inputClass}-suffix,
     &-with-append .#{$inputClass} {
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
     }
-
-    // &-prepend .#{$css-prefix}btn,
-    // &-append .#{$css-prefix}btn {
-    //     border-color: transparent;
-    //     background-color: transparent;
-    //     color: inherit;
-    //     margin: -($input-padding-vertical-base + 2) (-$input-padding-horizontal);
-    // }
 
     &-prepend,
     &-append {
@@ -259,27 +195,12 @@
         padding: $input-padding-vertical-base $input-padding-horizontal;
         font-size: inherit;
         font-weight: normal;
-        line-height: 1;
+        //line-height: 1;
         color: $input-color;
         text-align: center;
         background-color: $input-group-bg;
         border: 1px solid $input-border-color;
         border-radius: $btn-border-radius;
-
-        // Reset Select's style in addon
-        // .#{$css-prefix}select {
-        //     margin: -($input-padding-vertical-base + 1) (-$input-padding-horizontal); // lesshint spaceAroundOperator: false
-
-        //     &-selection {
-        //         background-color: inherit;
-        //         margin: -1px;
-        //         border: 1px solid transparent;
-        //     }
-
-        //     &-visible .#{$css-prefix}select-selection {
-        //         box-shadow: none;
-        //     }
-        // }
     }
 
     &-prepend {
@@ -289,21 +210,12 @@
         border-left: 0;
     }
 
-    // Reset rounded corners
-    //> span > .#{$inputClass}:first-child,
-
     > .#{$inputClass}:first-child,
     &-large > &-prepend,
     &-small > &-prepend,
     &-prepend {
         border-bottom-right-radius: 0;
         border-top-right-radius: 0;
-
-        // Reset Select's style in addon
-        // .#{$css-prefix}-select .#{$css-prefix}-select-selection {
-        //     border-bottom-right-radius: 0;
-        //     border-top-right-radius: 0;
-        // }
     }
 
     > .#{$inputClass}:last-child,
@@ -312,12 +224,6 @@
     &-append {
         border-bottom-left-radius: 0;
         border-top-left-radius: 0;
-
-        // Reset Select's style in addon
-        // .#{$css-prefix}-select .#{$css-prefix}-select-selection {
-        //     border-bottom-left-radius: 0;
-        //     border-top-left-radius: 0;
-        // }
     }
 }
 
@@ -326,12 +232,6 @@
     &-append {
         background-color: #fff;
         border: 1px solid $error-color;
-        .#{$css-prefix}select {
-            &-selection {
-                background-color: inherit;
-                border: 1px solid transparent;
-            }
-        }
     }
     &-prepend {
         border-right: 0;

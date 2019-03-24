@@ -28,7 +28,7 @@
             border-color: $primary-color;
             // transition: all $transition-time @ease-in-out;
             position: relative;
-            z-index: 2;
+            z-index: 1;
 
             &:hover {
                 background: tint($primary-color, 20%);
