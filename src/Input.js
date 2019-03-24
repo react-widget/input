@@ -137,7 +137,6 @@ export default class Input extends React.Component {
         );
     }
 
-
     renderIconInput() {
         const props = this.props;
         const {
