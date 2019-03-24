@@ -23,6 +23,7 @@ const propTypes = {
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     style: PropTypes.object,
     type: PropTypes.string,
+    inputComponent: PropTypes.elementType,
     maxLength: PropTypes.number,
     onPressEnter: PropTypes.func,
     onKeyDown: PropTypes.func,
@@ -47,6 +48,7 @@ export default class Input extends React.Component {
         prefixCls: 'rw-input',
         type: 'text',
         disabled: false,
+        inputComponent: 'input',
         prependProps: {},
         appendProps: {},
         prefixProps: {},
@@ -145,7 +147,8 @@ export default class Input extends React.Component {
             maxLength,
             size,
             disabled,
-            inputClassName
+            inputClassName,
+            inputComponent: InputComponent
         } = props;
 
         const { value } = this.state;
@@ -164,7 +167,7 @@ export default class Input extends React.Component {
         const Input = (
             <>
                 {prefixIcon}
-                <input
+                <InputComponent
                     {...otherProps}
                     ref={this.saveInput}
                     type={type}
@@ -340,16 +343,16 @@ export default class Input extends React.Component {
     };
 
     getWrapperClassName() {
-        const { prefixCls, className, size, prepend, append, search, enterButton } = this.props;
+        const { prefixCls, className, size, prepend, append } = this.props;
         return classnames({
             [className]: className,
             [`${prefixCls}-wrapper`]: true,
             [`${prefixCls}-wrapper-${size}`]: !!size,
             // [`${prefixCls}-type`]: this.type,
-            [`${prefixCls}-group`]: prepend || append || (search && enterButton),
-            [`${prefixCls}-group-size`]: (prepend || append || (search && enterButton)) && !!size,
+            [`${prefixCls}-group`]: prepend || append,
+            [`${prefixCls}-group-${size}`]: (prepend || append) && !!size,
             [`${prefixCls}-group-with-prepend`]: prepend,
-            [`${prefixCls}-group-with-append`]: append || (search && enterButton),
+            [`${prefixCls}-group-with-append`]: append,
             //[`${prefixCls}-hide-icon`]: append,
             //[`${prefixCls}-with-search`]: (search && enterButton)
         });

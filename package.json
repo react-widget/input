@@ -41,6 +41,7 @@
         "react": "^16.6.3",
         "react-dom": "^16.6.3",
         "react-widget-icon": "^0.2.0",
+        "react-widget-resize-observer": "^0.1.0",
         "shallowequal": "^1.1.0",
         "warning": "^4.0.3"
     },

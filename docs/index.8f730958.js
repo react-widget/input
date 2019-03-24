@@ -269,7 +269,8 @@ var _demo = _interopRequireDefault(__webpack_require__(/*! ./demos/demo1 */ "./e
 
 var _Demo = _interopRequireDefault(__webpack_require__(/*! ./demos/Demo2 */ "./examples/demos/Demo2.js"));
 
-// import Demo3 from './demos/Demo3';
+var _Demo2 = _interopRequireDefault(__webpack_require__(/*! ./demos/Demo3 */ "./examples/demos/Demo3.js"));
+
 // import Demo4 from './demos/Demo4';
 var _default = [{
   label: 'Input',
@@ -277,6 +278,9 @@ var _default = [{
 }, {
   label: 'Search',
   component: _Demo.default
+}, {
+  label: 'TextArea',
+  component: _Demo2.default
 }];
 exports.default = _default;
 
@@ -330,44 +334,53 @@ function SearchInputs() {
     }
   }), _react.default.createElement(_index.default.Search, {
     enterButton: true,
+    onSearch: function onSearch(s) {
+      return alert(s);
+    },
     placeholder: "Enter name",
     style: {
       width: 'auto'
     }
   }), _react.default.createElement(_index.default.Search, {
     enterButton: "Search...",
+    onSearch: function onSearch(s) {
+      return alert(s);
+    },
     placeholder: "Enter name",
     style: {
       width: 'auto'
     }
   }), _react.default.createElement(_index.default.Search, {
+    allowClear: true,
     size: "small",
+    placeholder: "Enter something...",
+    style: {
+      width: 400
+    }
+  }), _react.default.createElement(_index.default.Search, {
+    allowClear: true,
+    enterButton: true,
+    size: "small",
+    placeholder: "Enter name",
+    style: {
+      width: 400
+    }
+  }), _react.default.createElement(_index.default.Search, {
+    allowClear: true,
+    enterButton: "Search...",
+    size: "small",
+    placeholder: "Enter name",
+    style: {
+      width: 'auto'
+    }
+  }), _react.default.createElement(_index.default.Search, {
+    size: "large",
     placeholder: "Enter something...",
     style: {
       width: 'auto'
     }
   }), _react.default.createElement(_index.default.Search, {
     enterButton: true,
-    size: "small",
-    placeholder: "Enter name",
-    style: {
-      width: 'auto'
-    }
-  }), _react.default.createElement(_index.default.Search, {
-    enterButton: "Search...",
-    size: "small",
-    placeholder: "Enter name",
-    style: {
-      width: 'auto'
-    }
-  }), _react.default.createElement(_index.default.Search, {
-    size: "large",
-    placeholder: "Enter something...",
-    style: {
-      width: 'auto'
-    }
-  }), _react.default.createElement(_index.default.Search, {
-    enterButton: true,
     size: "large",
     placeholder: "Enter name",
     style: {
@@ -379,6 +392,86 @@ function SearchInputs() {
     placeholder: "Enter name",
     style: {
       width: 'auto'
+    }
+  }));
+}
+
+var DEMO =
+/*#__PURE__*/
+function (_Component) {
+  (0, _inherits2.default)(DEMO, _Component);
+
+  function DEMO() {
+    (0, _classCallCheck2.default)(this, DEMO);
+    return (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(DEMO).apply(this, arguments));
+  }
+
+  (0, _createClass2.default)(DEMO, [{
+    key: "render",
+    value: function render() {
+      return _react.default.createElement("div", null, _react.default.createElement(SearchInputs, null));
+    }
+  }]);
+  return DEMO;
+}(_react.Component);
+
+exports.default = DEMO;
+
+/***/ }),
+
+/***/ "./examples/demos/Demo3.js":
+/*!*********************************!*\
+  !*** ./examples/demos/Demo3.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime-corejs2/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime-corejs2/helpers/interopRequireWildcard.js");
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime-corejs2/helpers/interopRequireDefault */ "./node_modules/@babel/runtime-corejs2/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/helpers/classCallCheck */ "./node_modules/@babel/runtime-corejs2/helpers/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/helpers/createClass */ "./node_modules/@babel/runtime-corejs2/helpers/createClass.js"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime-corejs2/helpers/possibleConstructorReturn.js"));
+
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/helpers/getPrototypeOf */ "./node_modules/@babel/runtime-corejs2/helpers/getPrototypeOf.js"));
+
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/helpers/inherits */ "./node_modules/@babel/runtime-corejs2/helpers/inherits.js"));
+
+var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var _index = _interopRequireDefault(__webpack_require__(/*! ../../src/index */ "./src/index.js"));
+
+function SearchInputs() {
+  return _react.default.createElement("div", {
+    className: "input-demo-wrapper"
+  }, _react.default.createElement(_index.default.TextArea, {
+    allowClear: true,
+    prepend: "http://",
+    inputStyle: {
+      height: 80
+    }
+  }), _react.default.createElement(_index.default.TextArea, {
+    autosize: true
+  }), _react.default.createElement(_index.default.TextArea, {
+    autosize: {
+      minRows: 2,
+      maxRows: 6
+    }
+  }), _react.default.createElement(_index.default.TextArea, {
+    inputStyle: {
+      height: 80,
+      resize: 'none'
     }
   }));
 }
@@ -444,7 +537,50 @@ var _index = _interopRequireDefault(__webpack_require__(/*! ../../src/index */ "
 function IconInputs() {
   return _react.default.createElement("div", {
     className: "input-demo-wrapper"
-  }, _react.default.createElement(_index.default, {
+  }, _react.default.createElement(_index.default, null), _react.default.createElement(_index.default, {
+    prepend: "http://"
+  }), _react.default.createElement(_index.default, {
+    append: ".com"
+  }), _react.default.createElement(_index.default, {
+    allowClear: true,
+    prepend: "http://"
+  }), _react.default.createElement(_index.default, {
+    allowClear: true,
+    append: ".com"
+  }), _react.default.createElement(_index.default, {
+    allowClear: true,
+    prepend: "http://",
+    append: ".com",
+    prefix: _react.default.createElement(_reactWidgetIcon.default, {
+      type: "ios-contact"
+    }),
+    suffix: _react.default.createElement(_reactWidgetIcon.default, {
+      type: "ios-contact"
+    })
+  }), _react.default.createElement(_index.default, {
+    allowClear: true,
+    disabled: true,
+    prepend: "http://",
+    append: ".com",
+    prefix: _react.default.createElement(_reactWidgetIcon.default, {
+      type: "ios-contact"
+    }),
+    suffix: _react.default.createElement(_reactWidgetIcon.default, {
+      type: "ios-contact"
+    })
+  }), _react.default.createElement(_index.default, {
+    size: "small",
+    allowClear: true,
+    prepend: "http://",
+    append: ".com",
+    prefix: _react.default.createElement(_reactWidgetIcon.default, {
+      type: "ios-contact"
+    }),
+    suffix: _react.default.createElement(_reactWidgetIcon.default, {
+      type: "ios-contact"
+    })
+  }), _react.default.createElement(_index.default, {
+    size: "large",
     allowClear: true,
     prepend: "http://",
     append: ".com",
@@ -715,6 +851,7 @@ var propTypes = {
   value: _propTypes.default.oneOfType([_propTypes.default.string, _propTypes.default.number]),
   style: _propTypes.default.object,
   type: _propTypes.default.string,
+  inputComponent: _propTypes.default.elementType,
   maxLength: _propTypes.default.number,
   onPressEnter: _propTypes.default.func,
   onKeyDown: _propTypes.default.func,
@@ -722,8 +859,6 @@ var propTypes = {
   inputClassName: _propTypes.default.string,
   inputStyle: _propTypes.default.object,
   allowClear: _propTypes.default.bool,
-  //search: PropTypes.bool,
-  //enterButton: PropTypes.any,
   prepend: _propTypes.default.node,
   prependProps: _propTypes.default.object,
   append: _propTypes.default.node,
@@ -822,17 +957,7 @@ function (_React$Component) {
       if (this.props.autoFocus) {
         this.focus();
       }
-    } // getInputClassName() {
-    //     const { prefixCls, size, disabled, inputClassName, prefix, suffix } = this.props;
-    //     return classnames(prefixCls, {
-    //         [`${prefixCls}-${size}`]: size,
-    //         [`${prefixCls}-disabled`]: disabled,
-    //         [`${prefixCls}-with-prefix`]: prefix,
-    //         [`${prefixCls}-with-suffix`]: suffix,
-    //         [inputClassName]: inputClassName,
-    //     });
-    // }
-
+    }
   }, {
     key: "getInput",
     value: function getInput() {
@@ -855,14 +980,15 @@ function (_React$Component) {
           maxLength = props.maxLength,
           size = props.size,
           disabled = props.disabled,
-          inputClassName = props.inputClassName;
+          inputClassName = props.inputClassName,
+          InputComponent = props.inputComponent;
       var value = this.state.value;
       var otherProps = (0, _omit.default)(props, (0, _keys.default)(propTypes));
       var prefixIcon = this.renderPrefixIcon();
       var suffixIcon = this.renderSuffixIcon();
       var inputCls = (0, _classnames9.default)(prefixCls, (_classnames = {}, (0, _defineProperty2.default)(_classnames, "".concat(prefixCls, "-").concat(size), size), (0, _defineProperty2.default)(_classnames, "".concat(prefixCls, "-disabled"), disabled), (0, _defineProperty2.default)(_classnames, "".concat(prefixCls, "-with-prefix"), !!prefixIcon), (0, _defineProperty2.default)(_classnames, "".concat(prefixCls, "-with-suffix"), !!suffixIcon), (0, _defineProperty2.default)(_classnames, inputClassName, inputClassName), _classnames));
 
-      var Input = _react.default.createElement(_react.default.Fragment, null, prefixIcon, _react.default.createElement("input", (0, _extends2.default)({}, otherProps, {
+      var Input = _react.default.createElement(_react.default.Fragment, null, prefixIcon, _react.default.createElement(InputComponent, (0, _extends2.default)({}, otherProps, {
         ref: this.saveInput,
         type: type,
         className: inputCls,
@@ -1014,10 +1140,8 @@ function (_React$Component) {
           className = _this$props7.className,
           size = _this$props7.size,
           prepend = _this$props7.prepend,
-          append = _this$props7.append,
-          search = _this$props7.search,
-          enterButton = _this$props7.enterButton;
-      return (0, _classnames9.default)((_classnames8 = {}, (0, _defineProperty2.default)(_classnames8, className, className), (0, _defineProperty2.default)(_classnames8, "".concat(prefixCls, "-wrapper"), true), (0, _defineProperty2.default)(_classnames8, "".concat(prefixCls, "-wrapper-").concat(size), !!size), (0, _defineProperty2.default)(_classnames8, "".concat(prefixCls, "-group"), prepend || append || search && enterButton), (0, _defineProperty2.default)(_classnames8, "".concat(prefixCls, "-group-size"), (prepend || append || search && enterButton) && !!size), (0, _defineProperty2.default)(_classnames8, "".concat(prefixCls, "-group-with-prepend"), prepend), (0, _defineProperty2.default)(_classnames8, "".concat(prefixCls, "-group-with-append"), append || search && enterButton), _classnames8));
+          append = _this$props7.append;
+      return (0, _classnames9.default)((_classnames8 = {}, (0, _defineProperty2.default)(_classnames8, className, className), (0, _defineProperty2.default)(_classnames8, "".concat(prefixCls, "-wrapper"), true), (0, _defineProperty2.default)(_classnames8, "".concat(prefixCls, "-wrapper-").concat(size), !!size), (0, _defineProperty2.default)(_classnames8, "".concat(prefixCls, "-group"), prepend || append), (0, _defineProperty2.default)(_classnames8, "".concat(prefixCls, "-group-").concat(size), (prepend || append) && !!size), (0, _defineProperty2.default)(_classnames8, "".concat(prefixCls, "-group-with-prepend"), prepend), (0, _defineProperty2.default)(_classnames8, "".concat(prefixCls, "-group-with-append"), append), _classnames8));
     }
   }, {
     key: "render",
@@ -1038,6 +1162,7 @@ exports.default = Input;
   prefixCls: 'rw-input',
   type: 'text',
   disabled: false,
+  inputComponent: 'input',
   prependProps: {},
   appendProps: {},
   prefixProps: {},
@@ -1089,17 +1214,7 @@ var _classnames2 = _interopRequireDefault(__webpack_require__(/*! classnames */ 
 
 var _reactWidgetIcon = _interopRequireDefault(__webpack_require__(/*! react-widget-icon */ "./node_modules/react-widget-icon/index.js"));
 
-var _omit = _interopRequireDefault(__webpack_require__(/*! lodash/omit */ "./node_modules/lodash/omit.js"));
-
 var _Input = _interopRequireDefault(__webpack_require__(/*! ./Input */ "./src/Input.js"));
-
-function fixControlledValue(value) {
-  if (value == null) {
-    return '';
-  }
-
-  return value;
-}
 
 var propTypes = {
   prefixCls: _propTypes.default.string,
@@ -1176,39 +1291,14 @@ function (_React$Component) {
         className: inputClassName,
         ref: this.saveInput,
         suffix: suffix,
-        append: append
-      })); // if (enterButton === true) {
-      //     return (
-      //         <Input
-      //             onPressEnter={this.onSearch}
-      //             {...restProps}
-      //             className={className}
-      //             ref={this.saveInput}
-      //             append={this.renderSearch()}
-      //         />
-      //     );
-      // }
-      // let inputClassName;
-      // if (enterButton) {
-      //     inputClassName = classNames(prefixCls, className, {
-      //         [`${prefixCls}-enter-button`]: !!enterButton,
-      //         [`${prefixCls}-${size}`]: !!size,
-      //     });
-      // } else {
-      //     inputClassName = classNames(prefixCls, className);
-      // }
-      // return (
-      //     <Input
-      //         onPressEnter={this.onSearch}
-      //         {...restProps}
-      //         size={size}
-      //         prefixCls={inputPrefixCls}
-      //         addonAfter={this.renderAddonAfter(prefixCls)}
-      //         suffix={this.renderSuffix(prefixCls)}
-      //         ref={this.saveInput}
-      //         className={inputClassName}
-      //     />
-      // );
+        suffixProps: {
+          onClick: this.onSearch
+        },
+        append: append,
+        appendProps: {
+          onClick: this.onSearch
+        }
+      }));
     }
   }]);
   return Search;
@@ -1220,6 +1310,352 @@ exports.default = Search;
   prefixCls: 'rw-input',
   enterButton: false
 });
+
+/***/ }),
+
+/***/ "./src/TextArea.js":
+/*!*************************!*\
+  !*** ./src/TextArea.js ***!
+  \*************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime-corejs2/helpers/interopRequireDefault */ "./node_modules/@babel/runtime-corejs2/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/helpers/extends */ "./node_modules/@babel/runtime-corejs2/helpers/extends.js"));
+
+var _objectSpread2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/helpers/objectSpread */ "./node_modules/@babel/runtime-corejs2/helpers/objectSpread.js"));
+
+var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/helpers/objectWithoutProperties */ "./node_modules/@babel/runtime-corejs2/helpers/objectWithoutProperties.js"));
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/helpers/classCallCheck */ "./node_modules/@babel/runtime-corejs2/helpers/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/helpers/createClass */ "./node_modules/@babel/runtime-corejs2/helpers/createClass.js"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime-corejs2/helpers/possibleConstructorReturn.js"));
+
+var _getPrototypeOf3 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/helpers/getPrototypeOf */ "./node_modules/@babel/runtime-corejs2/helpers/getPrototypeOf.js"));
+
+var _assertThisInitialized2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/helpers/assertThisInitialized */ "./node_modules/@babel/runtime-corejs2/helpers/assertThisInitialized.js"));
+
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/helpers/inherits */ "./node_modules/@babel/runtime-corejs2/helpers/inherits.js"));
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/helpers/defineProperty */ "./node_modules/@babel/runtime-corejs2/helpers/defineProperty.js"));
+
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var _propTypes = _interopRequireDefault(__webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js"));
+
+var _classnames = _interopRequireDefault(__webpack_require__(/*! classnames */ "./node_modules/classnames/index.js"));
+
+var _reactWidgetResizeObserver = _interopRequireDefault(__webpack_require__(/*! react-widget-resize-observer */ "./node_modules/react-widget-resize-observer/index.js"));
+
+var _calculateNodeHeight = _interopRequireDefault(__webpack_require__(/*! ./calculateNodeHeight */ "./src/calculateNodeHeight.js"));
+
+var _Input = _interopRequireDefault(__webpack_require__(/*! ./Input */ "./src/Input.js"));
+
+function onNextFrame(cb) {
+  if (window.requestAnimationFrame) {
+    return window.requestAnimationFrame(cb);
+  }
+
+  return window.setTimeout(cb, 1);
+}
+
+function clearNextFrameAction(nextFrameId) {
+  if (window.cancelAnimationFrame) {
+    window.cancelAnimationFrame(nextFrameId);
+  } else {
+    window.clearTimeout(nextFrameId);
+  }
+}
+
+var ResizeTextArea =
+/*#__PURE__*/
+function (_React$Component) {
+  (0, _inherits2.default)(ResizeTextArea, _React$Component);
+
+  function ResizeTextArea() {
+    var _getPrototypeOf2;
+
+    var _this;
+
+    (0, _classCallCheck2.default)(this, ResizeTextArea);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = (0, _possibleConstructorReturn2.default)(this, (_getPrototypeOf2 = (0, _getPrototypeOf3.default)(ResizeTextArea)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "state", {
+      textareaStyles: {}
+    });
+    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "resizeOnNextFrame", function () {
+      if (_this.nextFrameActionId) {
+        clearNextFrameAction(_this.nextFrameActionId);
+      }
+
+      _this.nextFrameActionId = onNextFrame(_this.resizeTextarea);
+    });
+    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "resizeTextarea", function () {
+      var autosize = _this.props.autosize;
+
+      if (!autosize || !_this.textAreaRef) {
+        return;
+      }
+
+      var minRows = autosize.minRows,
+          maxRows = autosize.maxRows;
+      var textareaStyles = (0, _calculateNodeHeight.default)(_this.textAreaRef, false, minRows, maxRows);
+
+      _this.setState({
+        textareaStyles: textareaStyles
+      });
+    });
+    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "saveTextAreaRef", function (textArea) {
+      _this.textAreaRef = textArea;
+    });
+    return _this;
+  }
+
+  (0, _createClass2.default)(ResizeTextArea, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.resizeTextarea();
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      // Re-render with the new content then recalculate the height as required.
+      if (prevProps.value !== this.props.value) {
+        this.resizeOnNextFrame();
+      }
+    }
+  }, {
+    key: "focus",
+    value: function focus() {
+      this.textAreaRef.focus();
+    }
+  }, {
+    key: "blur",
+    value: function blur() {
+      this.textAreaRef.blur();
+    }
+  }, {
+    key: "select",
+    value: function select() {
+      this.textAreaRef.select();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          autosize = _this$props.autosize,
+          otherProps = (0, _objectWithoutProperties2.default)(_this$props, ["autosize"]);
+      var style = (0, _objectSpread2.default)({}, this.props.style, this.state.textareaStyles);
+      return _react.default.createElement(_reactWidgetResizeObserver.default, {
+        onResize: this.resizeOnNextFrame,
+        disabled: !autosize
+      }, _react.default.createElement("textarea", (0, _extends2.default)({}, otherProps, {
+        style: style,
+        ref: this.saveTextAreaRef
+      })));
+    }
+  }, {
+    key: "value",
+    get: function get() {},
+    set: function set(value) {}
+  }]);
+  return ResizeTextArea;
+}(_react.default.Component);
+
+var TextArea =
+/*#__PURE__*/
+function (_React$Component2) {
+  (0, _inherits2.default)(TextArea, _React$Component2);
+
+  function TextArea() {
+    (0, _classCallCheck2.default)(this, TextArea);
+    return (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf3.default)(TextArea).apply(this, arguments));
+  }
+
+  (0, _createClass2.default)(TextArea, [{
+    key: "render",
+    value: function render() {
+      var props = this.props;
+      return _react.default.createElement(_Input.default, (0, _extends2.default)({}, props, {
+        className: (0, _classnames.default)(props.className, "".concat(props.prefixCls, "-textarea-wrapper")),
+        inputComponent: ResizeTextArea
+      }));
+    }
+  }]);
+  return TextArea;
+}(_react.default.Component);
+
+exports.default = TextArea;
+(0, _defineProperty2.default)(TextArea, "propTypes", {
+  prefixCls: _propTypes.default.string,
+  autosize: _propTypes.default.oneOfType([_propTypes.default.bool, _propTypes.default.shape({
+    minRows: _propTypes.default.number,
+    maxRows: _propTypes.default.number
+  })])
+});
+(0, _defineProperty2.default)(TextArea, "defaultProps", {
+  prefixCls: 'rw-input',
+  autosize: false
+});
+
+/***/ }),
+
+/***/ "./src/calculateNodeHeight.js":
+/*!************************************!*\
+  !*** ./src/calculateNodeHeight.js ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime-corejs2/helpers/interopRequireDefault */ "./node_modules/@babel/runtime-corejs2/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.calculateNodeStyling = calculateNodeStyling;
+exports.default = calculateNodeHeight;
+
+var _maxSafeInteger = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/core-js/number/max-safe-integer */ "./node_modules/@babel/runtime-corejs2/core-js/number/max-safe-integer.js"));
+
+var _minSafeInteger = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/core-js/number/min-safe-integer */ "./node_modules/@babel/runtime-corejs2/core-js/number/min-safe-integer.js"));
+
+var _parseFloat2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/core-js/parse-float */ "./node_modules/@babel/runtime-corejs2/core-js/parse-float.js"));
+
+// Thanks to https://github.com/andreypopp/react-textarea-autosize/
+
+/**
+ * calculateNodeHeight(uiTextNode, useCache = false)
+ */
+var HIDDEN_TEXTAREA_STYLE = "\n  min-height:0 !important;\n  max-height:none !important;\n  height:0 !important;\n  visibility:hidden !important;\n  overflow:hidden !important;\n  position:absolute !important;\n  z-index:-1000 !important;\n  top:0 !important;\n  right:0 !important\n";
+var SIZING_STYLE = ['letter-spacing', 'line-height', 'padding-top', 'padding-bottom', 'font-family', 'font-weight', 'font-size', 'font-variant', 'text-rendering', 'text-transform', 'width', 'text-indent', 'padding-left', 'padding-right', 'border-width', 'box-sizing'];
+var computedStyleCache = {};
+var hiddenTextarea;
+
+function calculateNodeStyling(node) {
+  var useCache = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+  var nodeRef = node.getAttribute('id') || node.getAttribute('data-reactid') || node.getAttribute('name');
+
+  if (useCache && computedStyleCache[nodeRef]) {
+    return computedStyleCache[nodeRef];
+  }
+
+  var style = window.getComputedStyle(node);
+  var boxSizing = style.getPropertyValue('box-sizing') || style.getPropertyValue('-moz-box-sizing') || style.getPropertyValue('-webkit-box-sizing');
+  var paddingSize = (0, _parseFloat2.default)(style.getPropertyValue('padding-bottom')) + (0, _parseFloat2.default)(style.getPropertyValue('padding-top'));
+  var borderSize = (0, _parseFloat2.default)(style.getPropertyValue('border-bottom-width')) + (0, _parseFloat2.default)(style.getPropertyValue('border-top-width'));
+  var sizingStyle = SIZING_STYLE.map(function (name) {
+    return "".concat(name, ":").concat(style.getPropertyValue(name));
+  }).join(';');
+  var nodeInfo = {
+    sizingStyle: sizingStyle,
+    paddingSize: paddingSize,
+    borderSize: borderSize,
+    boxSizing: boxSizing
+  };
+
+  if (useCache && nodeRef) {
+    computedStyleCache[nodeRef] = nodeInfo;
+  }
+
+  return nodeInfo;
+}
+
+function calculateNodeHeight(uiTextNode) {
+  var useCache = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+  var minRows = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+  var maxRows = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+
+  if (!hiddenTextarea) {
+    hiddenTextarea = document.createElement('textarea');
+    document.body.appendChild(hiddenTextarea);
+  } // Fix wrap="off" issue
+  // https://github.com/ant-design/ant-design/issues/6577
+
+
+  if (uiTextNode.getAttribute('wrap')) {
+    hiddenTextarea.setAttribute('wrap', uiTextNode.getAttribute('wrap'));
+  } else {
+    hiddenTextarea.removeAttribute('wrap');
+  } // Copy all CSS properties that have an impact on the height of the content in
+  // the textbox
+
+
+  var _calculateNodeStyling = calculateNodeStyling(uiTextNode, useCache),
+      paddingSize = _calculateNodeStyling.paddingSize,
+      borderSize = _calculateNodeStyling.borderSize,
+      boxSizing = _calculateNodeStyling.boxSizing,
+      sizingStyle = _calculateNodeStyling.sizingStyle; // Need to have the overflow attribute to hide the scrollbar otherwise
+  // text-lines will not calculated properly as the shadow will technically be
+  // narrower for content
+
+
+  hiddenTextarea.setAttribute('style', "".concat(sizingStyle, ";").concat(HIDDEN_TEXTAREA_STYLE));
+  hiddenTextarea.value = uiTextNode.value || uiTextNode.placeholder || '';
+  var minHeight = _minSafeInteger.default;
+  var maxHeight = _maxSafeInteger.default;
+  var height = hiddenTextarea.scrollHeight;
+  var overflowY;
+
+  if (boxSizing === 'border-box') {
+    // border-box: add border, since height = content + padding + border
+    height = height + borderSize;
+  } else if (boxSizing === 'content-box') {
+    // remove padding, since height = content
+    height = height - paddingSize;
+  }
+
+  if (minRows !== null || maxRows !== null) {
+    // measure height of a textarea with a single row
+    hiddenTextarea.value = ' ';
+    var singleRowHeight = hiddenTextarea.scrollHeight - paddingSize;
+
+    if (minRows !== null) {
+      minHeight = singleRowHeight * minRows;
+
+      if (boxSizing === 'border-box') {
+        minHeight = minHeight + paddingSize + borderSize;
+      }
+
+      height = Math.max(minHeight, height);
+    }
+
+    if (maxRows !== null) {
+      maxHeight = singleRowHeight * maxRows;
+
+      if (boxSizing === 'border-box') {
+        maxHeight = maxHeight + paddingSize + borderSize;
+      }
+
+      overflowY = height > maxHeight ? '' : 'hidden';
+      height = Math.min(maxHeight, height);
+    }
+  }
+
+  return {
+    height: height,
+    minHeight: minHeight,
+    maxHeight: maxHeight,
+    overflowY: overflowY
+  };
+}
 
 /***/ }),
 
@@ -1244,13 +1680,22 @@ Object.defineProperty(exports, "Search", {
     return _Search.default;
   }
 });
+Object.defineProperty(exports, "TextArea", {
+  enumerable: true,
+  get: function get() {
+    return _TextArea.default;
+  }
+});
 exports.default = void 0;
 
 var _Input = _interopRequireDefault(__webpack_require__(/*! ./Input */ "./src/Input.js"));
 
 var _Search = _interopRequireDefault(__webpack_require__(/*! ./Search */ "./src/Search.js"));
 
+var _TextArea = _interopRequireDefault(__webpack_require__(/*! ./TextArea */ "./src/TextArea.js"));
+
 _Input.default.Search = _Search.default;
+_Input.default.TextArea = _TextArea.default;
 var _default = _Input.default;
 exports.default = _default;
 
@@ -1282,4 +1727,4 @@ module.exports = __webpack_require__(/*! ./examples/index.js */"./examples/index
 /***/ })
 
 /******/ });
-//# sourceMappingURL=index.63ca1d0e.js.map
+//# sourceMappingURL=index.8f730958.js.map

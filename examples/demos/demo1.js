@@ -6,7 +6,36 @@ function IconInputs() {
 
     return (
         <div className="input-demo-wrapper">
+            <Input />
+            <Input prepend="http://" />
+            <Input append=".com" />
+            <Input allowClear prepend="http://" />
+            <Input allowClear append=".com" />
             <Input
+                allowClear
+                prepend="http://"
+                append=".com"
+                prefix={<Icon type="ios-contact" />}
+                suffix={<Icon type="ios-contact" />}
+            />
+            <Input
+                allowClear
+                disabled
+                prepend="http://"
+                append=".com"
+                prefix={<Icon type="ios-contact" />}
+                suffix={<Icon type="ios-contact" />}
+            />
+            <Input
+                size="small"
+                allowClear
+                prepend="http://"
+                append=".com"
+                prefix={<Icon type="ios-contact" />}
+                suffix={<Icon type="ios-contact" />}
+            />
+            <Input
+                size="large"
                 allowClear
                 prepend="http://"
                 append=".com"
