@@ -81,3 +81,15 @@
 .#{$input-prefix-cls}-group {
     @include input-group($input-prefix-cls);
 }
+
+.#{$form-item-prefix-cls}-error {
+    .#{$input-prefix-cls} {
+        border: 1px solid $error-color;
+        &:hover {
+            border-color: $error-color;
+        }
+        &:active {
+            border-color: $error-color;
+        }
+    }
+}

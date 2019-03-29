@@ -180,6 +180,13 @@
     border-bottom-left-radius: 0;
     border-top-left-radius: 0; }
 
+.rw-form-item-error .rw-input {
+  border: 1px solid #ed4014; }
+  .rw-form-item-error .rw-input:hover {
+    border-color: #ed4014; }
+  .rw-form-item-error .rw-input:active {
+    border-color: #ed4014; }
+
 .rw-input-with-search .rw-input-suffix {
   cursor: pointer;
   color: #999eaa; }
