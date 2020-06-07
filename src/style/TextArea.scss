@@ -1,8 +1,0 @@
-// Reset height for textarea
-textarea.#{$input-prefix-cls} {
-    max-width: 100%;
-    height: auto;
-    min-height: $input-height-base;
-    vertical-align: bottom;
-    font-size: $font-size-base;
-}
